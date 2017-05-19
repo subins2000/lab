@@ -1,0 +1,13 @@
+<?phpxml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="//symfony.com/schema/routing"
+    xmlns:xsi="//www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="//symfony.com/schema/routing //symfony.com/schema/routing/routing-1.0.xsd">
+
+    <import resource="validpattern.xml" prefix="/{foo}" host="">
+        <default key="foo">123</default>
+        <requirement key="foo">\d+</requirement>
+        <option key="foo">bar</option>
+        <condition>context.getMethod() == "POST"</condition>
+    </import>
+</routes>

@@ -1,0 +1,18 @@
+This Google API was creatd by Subin Siby //subins.hp.af.cm, //subinsb.com, //gplus.to/subinsiby
+Copyright 2013. If you have any doubts/problems/bugs report it in //subinsb.com/p/ask.html OR contact me @ subins2000@gmail.com
+
+How to use this ?
+Go to https://code.google.com/oauthplayground to see the scopes you can add
+
+How to get a client Id and Client Secret ?
+
+1) Go to https://code.google.com/apis/ and create a new project. 
+2) Fill up the form
+3) In the redirect URL's type in the URL of the index.php in your site.
+4) Add your site URL as trusted Origin
+You will now get a client Id and a Client Secret Id. Type both of those in each $client_id and $client_secret variable of Configuration section in index.php file.
+
+Open the page index.php in your browser and you will be redirected to the Google Oauth site and when the user authorised your app they will reach the redirect_url you specified in index.php configuration section.
+
+Where can I get the list of scopes ?
+I have made a blog post containing the list of scopes. View the post @ //subinsb.com/2013/04/list-google-oauth-scopes.html

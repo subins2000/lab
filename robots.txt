@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /inc/footer.php
+Disallow: /inc/shortFooter.php
+Disallow: /inc/top.php
+Disallow: /inc/track.php
+Allow: /

@@ -1,0 +1,47 @@
+.chatWindow .users, .chatWindow .chatbox{
+	display:inline-block;
+	vertical-align:top;
+	height:330px;
+	padding: 0px 15px;
+	position:relative;
+}
+.chatWindow .users{
+	background: #6AAEEC;
+	color:white;
+	width: 100px;
+	padding: 10px 15px;
+	overflow-y:auto;
+}
+.chatWindow .chatbox{
+	color:black;
+	width: 330px;
+}
+.chatWindow .chatbox .status{
+	background: #ABC8F8;
+	padding: 5px 15px;
+}
+.chatWindow .chatbox .chat {
+	display: none;
+	background:#fff;
+}
+.chatWindow .chatbox .chat .msgs{
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	overflow-y: auto;
+	height: 285px;
+}
+.chatWindow .chatbox #msgForm{
+	padding-top: 1.5px;
+}
+.chatWindow .error{
+	color:red;
+}
+.chatWindow .success{
+	color:green;
+}
+.chatWindow .msgs .msg, .chat .users .user{
+	border-bottom:1px solid black;
+	padding:4px 10px;
+	white-space:pre-line;
+	word-break:break-word;
+}

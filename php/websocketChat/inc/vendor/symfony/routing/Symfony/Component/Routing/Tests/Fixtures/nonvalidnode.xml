@@ -1,0 +1,8 @@
+<?phpxml version="1.0" encoding="UTF-8" ?>
+
+<routes xmlns="//symfony.com/schema/routing"
+    xmlns:xsi="//www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="//symfony.com/schema/routing //symfony.com/schema/routing/routing-1.0.xsd">
+
+    <foo>bar</foo>
+</routes>
