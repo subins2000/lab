@@ -2,10 +2,10 @@
 require_once 'inc/load.php';
 require_once 'inc/posts.php';
 $pid = isset($_GET['class']) ? htmlspecialchars($_GET['class']) : null;
-$id  = $parr[$pid]['down'];
-$t   = $parr[$pid]['title'];
-$tut = $parr[$pid]['url'];
-$dm  = $parr[$pid]['d'];
+$id  = $demoList[$pid]['down'];
+$t   = $demoList[$pid]['title'];
+$tut = $demoList[$pid]['url'];
+$dm  = $demoList[$pid]['d'];
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,5 @@
 <?php
-$parr = array(
+$demoList = array(
     0  => array(
     	'id'	=> 'google-php-lib-simple',
         'title' => 'Google PHP Library Simplified',

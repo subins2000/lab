@@ -15,6 +15,6 @@ if(isset($_GET['id'])){
     $sql = $dbh->prepare("UPDATE `downloads` SET `counter` = `counter` + 1 WHERE `id` = ?");
     $sql->execute(array($_GET['id']));
   }
-  $url = $GLOBALS['parr'][$pid]['down'];
+  $url = $GLOBALS['demoList'][$pid]['down'];
   header("Location: $url");
 }

@@ -72,11 +72,11 @@ if ( isset($GLOBALS['curDemo']) ) {
 						if(mt_rand() % 2 === 0){
 							$sth = $dbh->query("SELECT * FROM `downloads`")->fetchAll();
 							$randomKey = array_rand($sth, 1);
-							$randomDemo = $GLOBALS['parr'][$sth[$randomKey]["id"]];
+							$randomDemo = $GLOBALS['demoList'][$sth[$randomKey]["id"]];
 							echo "<a href='". $randomDemo["d"] ."'>\"" . $randomDemo["title"] . "\" was downloaded {$sth[$randomKey]["counter"]} times</a>";
 						} else {
-							$randomKey = array_rand($GLOBALS['parr'], 1);
-							$randomDemo = $GLOBALS['parr'][$randomKey];
+							$randomKey = array_rand($GLOBALS['demoList'], 1);
+							$randomDemo = $GLOBALS['demoList'][$randomKey];
 							echo "A Random Experiment : <a href='". $randomDemo["d"] ."'>" . $randomDemo["title"] . "</a>";
 						}
 						?>

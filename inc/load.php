@@ -3,12 +3,12 @@ $GLOBALS['pid'] = null;
 
 require_once __DIR__ . '/config.php';
 include __DIR__ . '/posts.php';
-$GLOBALS['parr'] = $parr;
+$GLOBALS['demoList'] = $demoList;
 
 function init($pid)
 {
     $GLOBALS['pid']     = $pid;
-    $GLOBALS['curDemo'] = $GLOBALS['parr'][$GLOBALS['pid']];
+    $GLOBALS['curDemo'] = $GLOBALS['demoList'][$GLOBALS['pid']];
     $GLOBALS['title']   = $GLOBALS['curDemo']['title'];
 }
 
@@ -27,10 +27,10 @@ function curPageURL($http = false)
 function head($title = '')
 {
     $id   = $GLOBALS['pid'];
-    $parr = $GLOBALS['parr'];
+    $demoList = $GLOBALS['demoList'];
 
     if ($title == '') {
-        $title = $GLOBALS['parr'][$GLOBALS['pid']]['title'];
+        $title = $GLOBALS['demoList'][$GLOBALS['pid']]['title'];
     }
 
     require_once __DIR__ . '/views/head.php';
@@ -49,7 +49,7 @@ function top()
 function footer()
 {
     if ($_SERVER['HTTP_HOST'] != 'demos.sima') {
-        $postURL = $GLOBALS['parr'][$GLOBALS['pid']]['url'];
+        $postURL = $GLOBALS['demoList'][$GLOBALS['pid']]['url'];
         include __DIR__ . '/views/footer.php';
     }
 }
