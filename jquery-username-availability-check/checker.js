@@ -2,7 +2,7 @@ $(document).ready(function(){
  v=$("#user");
  $("#check").on('click',function(){
   v.attr("disabled","true");
-  v.css({background:"url(../cdn/load.gif) no-repeat",backgroundSize: "2em",backgroundPosition: "center right"});
+  v.css({background:"url(../assets/load.gif) no-repeat",backgroundSize: "2em",backgroundPosition: "center right"});
   $.post('check.php',{user:v.val().toLowerCase()},function(d){
    v.css("background","white");
    v.removeAttr("disabled");
