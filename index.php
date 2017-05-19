@@ -19,10 +19,10 @@ require_once __DIR__ . "/inc/load.php";
 			<div class="demos_list">
         <?php
         include "inc/posts.php";
-        krsort($parr);
+        krsort($demoList);
         $i = 0;
         $even = array(0, 2, 4, 6, 8);
-        foreach($parr as $k => $v){
+        foreach($demoList as $k => $v){
           $i++;
           if($i % 2 == 0){
             echo '<div class="row even">';

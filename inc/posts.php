@@ -1,5 +1,5 @@
 <?php
-$parr = array(
+$demoList = array(
     0  => array(
         'title' => 'Google PHP Library Simplified',
         'url'   => '//subinsb.com/login-with-google-oauth-without-using-google-php-library',
