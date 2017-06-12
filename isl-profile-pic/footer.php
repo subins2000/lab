@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../inc/track.php";
+require_once __DIR__ . "/../inc/views/partial/track.php";
 ?>
 <div id="comments">
   <p>Created by <a href="http://subinsb.com">Subin Siby</a>.</p>
@@ -19,7 +19,7 @@ require_once __DIR__ . "/../inc/track.php";
   <div id="disqus_thread"></div>
   <script>
   var disqus_config = function () {
-      this.page.url = "http://demos.subinsb.com/isl-profile-pic"; 
+      this.page.url = "http://demos.subinsb.com/isl-profile-pic";
       this.page.identifier = "demos-isl-profile-pic";
   };
   (function() { // DON'T EDIT BELOW THIS LINE
