@@ -8,14 +8,14 @@
 class PHPCrawlerUtils
 {
   /**
-   * Splits an URL into its parts
+   * Splits an URL/URI into its parts
    *
    * @param string $url  The URL
    * @return array       An array containig the parts of the URL
    *
    *                     The keys are:
    *
-   *                     "protocol" (z.B. "//")
+   *                     "protocol" (z.B. "http://")
    *                     "host"     (z.B. "www.bla.de")
    *                     "path"     (z.B. "/test/palimm/")
    *                     "file"     (z.B. "index.htm")
@@ -27,8 +27,8 @@ class PHPCrawlerUtils
   public static function splitURL($url)
   {
     // Protokoll der URL hinzufügen (da ansonsten parse_url nicht klarkommt)
-    if (!preg_match("#^[a-z]+://# i", $url))
-      $url = "//" . $url;
+    if (!preg_match("#^[a-z0-9-]+://# i", $url))
+      $url = "http://" . $url;
     
     $parts = @parse_url($url);
     
@@ -42,6 +42,9 @@ class PHPCrawlerUtils
     $auth_password = (isset($parts["pass"]) ? $parts["pass"] : "");
     $port = (isset($parts["port"]) ? $parts["port"] : "");
     
+    // Host is case-insensitive
+    $host = strtolower($host);
+    
     // File
     preg_match("#^(.*/)([^/]*)$#", $path, $match); // Alles ab dem letzten "/"
     if (isset($match[0]))
@@ -54,7 +57,7 @@ class PHPCrawlerUtils
       $file = "";
     }
       
-    // Der Domainname aus dem Host
+    // The domainname from the host
     // Host: www.foo.com -> Domain: foo.com
     $parts = @explode(".", $host);
     if (count($parts) <= 2)
@@ -73,14 +76,14 @@ class PHPCrawlerUtils
     
     // DEFAULT VALUES für protocol, path, port etc. (wenn noch nicht gesetzt)
       
-    // Wenn Protokoll leer -> Protokoll ist "//"
-    if ($protocol == "") $protocol="//";
+    // Wenn Protokoll leer -> Protokoll ist "http://"
+    if ($protocol == "") $protocol="http://";
     
     // Wenn Port leer -> Port setzen auf 80 or 443
     // (abhängig vom Protokoll)
     if ($port == "")
     {
-      if (strtolower($protocol) == "//") $port=80;
+      if (strtolower($protocol) == "http://") $port=80;
       if (strtolower($protocol) == "https://") $port=443;
     }
     
@@ -108,7 +111,7 @@ class PHPCrawlerUtils
    * @param array $url_parts Array conatining the URL-parts.
    *                         The keys should be:
    *
-   *                         "protocol" (z.B. "//") OPTIONAL
+   *                         "protocol" (z.B. "http://") OPTIONAL
    *                         "host"     (z.B. "www.bla.de")
    *                         "path"     (z.B. "/test/palimm/") OPTIONAL
    *                         "file"     (z.B. "index.htm") OPTIONAL
@@ -116,7 +119,7 @@ class PHPCrawlerUtils
    *                         "auth_username" OPTIONAL
    *                         "auth_password" OPTIONAL
    * @param bool $normalize   If TRUE, the URL will be returned normalized.
-   *                          (I.e. //www.foo.com/path/ insetad of //www.foo.com:80/path/)
+   *                          (I.e. http://www.foo.com/path/ insetad of http://www.foo.com:80/path/)
    * @return string The URL
    *                         
    */
@@ -128,7 +131,7 @@ class PHPCrawlerUtils
       throw new Exception("Cannot generate URL, host not specified!");
     }
     
-    if (!isset($url_parts["protocol"]) || $url_parts["protocol"] == "") $url_parts["protocol"] = "//";
+    if (!isset($url_parts["protocol"]) || $url_parts["protocol"] == "") $url_parts["protocol"] = "http://";
     if (!isset($url_parts["port"])) $url_parts["port"]= 80;
     if (!isset($url_parts["path"])) $url_parts["path"] = "";
     if (!isset($url_parts["file"])) $url_parts["file"] = "";
@@ -149,14 +152,14 @@ class PHPCrawlerUtils
     // Normalize
     if ($normalize == true)
     {
-      if ($url_parts["protocol"] == "//" && $url_parts["port"] == 80 ||
+      if ($url_parts["protocol"] == "http://" && $url_parts["port"] == 80 ||
           $url_parts["protocol"] == "https://" && $url_parts["port"] == 443)
       {
         $port_part = "";
       }
       
-      // Don't add port to links other than "//" or "https://"
-      if ($url_parts["protocol"] != "//" && $url_parts["protocol"] != "https://")
+      // Don't add port to links other than "http://" or "https://"
+      if ($url_parts["protocol"] != "http://" && $url_parts["protocol"] != "https://")
       {
         $port_part = "";
       }
@@ -174,7 +177,7 @@ class PHPCrawlerUtils
   /**
    * Normalizes an URL
    *
-   * I.e. converts //www.foo.com:80/path/ to //www.foo.com/path/
+   * I.e. converts http://www.foo.com:80/path/ to http://www.foo.com/path/
    *
    * @param string $url
    * @return string OR NULL on failure
@@ -222,127 +225,106 @@ class PHPCrawlerUtils
   /**
    * Reconstructs a full qualified and normalized URL from a given link relating to the URL the link was found in.
    *
-   * @param string $link          The link (i.e. "../page.htm")
-   * @param PHPCrawlerUrlPartsDescriptor $BaseUrlParts  The parts of the URL the link was found in (i.e. "//www.foo.com/folder/index.html")
+   * @param string $link                           The link (i.e. "../page.htm")
+   * @param PHPCrawlerUrlPartsDescriptor $BaseUrl  The base-URL the link was found in as PHPCrawlerUrlPartsDescriptor-object
    *
-   * @return string The rebuild, full qualified and normilazed URL the link is leading to (i.e. "//www.foo.com/page.htm")
-   *                Or NULL if the link couldn't be rebuild correctly.
+   * @return string The rebuild, full qualified and normilazed URL the link is leading to (i.e. "http://www.foo.com/page.htm"),
+   *                or NULL if the link couldn't be rebuild correctly.
    */
-  public static function buildURLFromLink($link, PHPCrawlerUrlPartsDescriptor $BaseUrlParts)
+  public static function buildURLFromLink($link, PHPCrawlerUrlPartsDescriptor $BaseUrl)
   { 
+    $url_parts = $BaseUrl->toArray();
     
-    $url_parts = $BaseUrlParts->toArray();
+    // Dedoce HTML-entities
+    $link = PHPCrawlerEncodingUtils::decodeHtmlEntities($link);
     
-    // Entities-replacements
-    $entities= array ("'&(quot|#34);'i",
-                        "'&(amp|#38);'i",
-                        "'&(lt|#60);'i",
-                        "'&(gt|#62);'i",
-                        "'&(nbsp|#160);'i",
-                        "'&(iexcl|#161);'i",
-                        "'&(cent|#162);'i",
-                        "'&(pound|#163);'i",
-                        "'&(copy|#169);'i");
-                        
-    $replace=array ("\"",
-                    "&",
-                    "<",
-                    ">",
-                    " ",
-                    chr(161),
-                    chr(162),
-                    chr(163),
-                    chr(169));
-   
-   // Remove "#..." at end, but ONLY at the end,
-   // not if # is at the beginning !
-   $link = preg_replace("/^(.{1,})#.{0,}$/", "\\1", $link);
+    // Remove anchor ("#..."), but ONLY at the end, not if # is at the beginning !
+    $link = preg_replace("/^(.{1,})#.{0,}$/", "\\1", $link);
 
-   // Cases
+    // Cases
+    
+    // Strange link like "//foo.htm" -> make it to "http://foo.html"
+    if (substr($link, 0, 2) == "//")
+    {
+      $link = "http:".$link;
+    }
    
-   // Strange link like "//foo.htm" -> make it to "//foo.html"
-   if (substr($link, 0, 2) == "//")
-   {
-     $link = "http:".$link;
-   }
-   
-   // 1. relative link starts with "/" --> doc_root
-   // "/index.html" -> "//www.foo.com/index.html"    
-   elseif (substr($link,0,1)=="/")
-   {
-     $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$link;
-   }
-    
-    // 2. "./foo.htm" -> "foo.htm"
-    elseif (substr($link,0,2)=="./")
+    // 1. relative link starts with "/" --> doc_root
+    // "/index.html" -> "http://www.foo.com/index.html"    
+    elseif (substr($link,0,1)=="/")
     {
-      $link=$url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$url_parts["path"].substr($link, 2);
+      $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$link;
     }
+     
+     // 2. "./foo.htm" -> "foo.htm"
+     elseif (substr($link,0,2)=="./")
+     {
+       $link=$url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$url_parts["path"].substr($link, 2);
+     }
+     
+     // 3. Link is an absolute Link with a given protocol and host (f.e. "http://..." or "android-app://...)
+     // DO NOTHING
+     elseif (preg_match("#^[a-z0-9-]{1,}(:\/\/)# i", $link))
+     {
+       $link = $link;
+     }
+     
+     // 4. Link is stuff like "javascript: ..." or something
+     elseif (preg_match("/^[a-zA-Z]{0,}:[^\/]{0,1}/", $link))
+     {
+       $link = "";
+     }
     
-    // 3. Link is an absolute Link with a given protocol and host (f.e. "//...")
-    // DO NOTHING
-    elseif (preg_match("#^[a-z0-9]{1,}(:\/\/)# i", $link))
-    {
-      $link = $link;
-    }
+     // 5. "../../foo.html" -> remove the last path from our actual path
+     // and remove "../" from link at the same time until there are
+     // no more "../" at the beginning of the link
+     elseif (substr($link, 0, 3)=="../")
+     {
+       $new_path = $url_parts["path"];
+       
+       while (substr($link, 0, 3) == "../")
+       {
+         $new_path = preg_replace('/\/[^\/]{0,}\/$/',"/", $new_path);
+         $link  = substr($link, 3);
+       }
+       
+       $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$new_path.$link;
+     }
+     
+     // 6. link starts with #
+     // -> leads to the same site as we are on, trash
+     elseif (substr($link,0,1) == "#")
+     {
+       $link="";
+     }
+     
+     // 7. link starts with "?"
+     elseif (substr($link,0,1)=="?")
+     {
+       $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$url_parts["path"].$url_parts["file"].$link;
+     }
     
-    // 4. Link is stuff like "javascript: ..." or something
-    elseif (preg_match("/^[a-zA-Z]{0,}:[^\/]{0,1}/", $link))
-    {
-      $link = "";
-    }
-    
-    // 5. "../../foo.html" -> remove the last path from our actual path
-    // and remove "../" from link at the same time until there are
-    // no more "../" at the beginning of the link
-    elseif (substr($link, 0, 3)=="../")
-    {
-      $new_path = $url_parts["path"];
-      
-      while (substr($link, 0, 3) == "../")
-      {
-        $new_path = preg_replace('/\/[^\/]{0,}\/$/',"/", $new_path);
-        $link  = substr($link, 3);
-      }
-      
-      $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$new_path.$link;
-    }
-    
-    // 6. link starts with #
-    // -> leads to the same site as we are on, trash
-    elseif (substr($link,0,1) == "#")
-    {
-      $link="";
-    }
-    
-    // 7. link starts with "?"
-    elseif (substr($link,0,1)=="?")
-    {
-      $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$url_parts["path"].$url_parts["file"].$link;
-    }
-    
-    // 7. thats it, else the abs_path is simply PATH.LINK ...
-    else
-    { 
-      $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$url_parts["path"].$link;
-    }
-    
-    if ($link == "") return null;
+     // 7. thats it, else the abs_path is simply PATH.LINK ...
+     else
+     { 
+       $link = $url_parts["protocol"].$url_parts["host"].":".$url_parts["port"].$url_parts["path"].$link;
+     }
+     
+     if ($link == "") return null;
 
-    
-    // Now, at least, replace all HTMLENTITIES with normal text !!
-    // Fe: HTML-Code of the link is: <a href="index.php?x=1&amp;y=2">
-    // -> Link has to be "index.php?x=1&y=2"
-    $link = preg_replace($entities, $replace, $link);
-    
-    // Replace linebreaks in the link with "" (happens if a links in the sourcecode
-    // linebreaks)
-    $link = str_replace(array("\n", "\r"), "", $link);
-    
-    // "Normalize" URL
-    $link = self::normalizeUrl($link);
-        
-    return $link;
+     // Now, at least, replace all HTMLENTITIES with normal text.
+     // I.E.: HTML-Code of the link is: <a href="index.php?x=1&amp;y=2">
+     // -> Link has to be "index.php?x=1&y=2"
+     //$link = PHPCrawlerEncodingUtils::decodeHtmlEntities($link);
+
+     // Replace linebreaks in the link with "" (happens if a link in the sourcecode
+     // linebreaks)
+     $link = str_replace(array("\n", "\r"), "", $link);
+     
+     // "Normalize" URL
+     $link = self::normalizeUrl($link);
+      
+     return $link;
   }
   
   /**
@@ -456,7 +438,7 @@ class PHPCrawlerUtils
    * Returns the normalized root-URL of the given URL
    *
    * @param string $url The URL, e.g. "www.foo.con/something/index.html"
-   * @return string The root-URL, e.g. "//www.foo.com"
+   * @return string The root-URL, e.g. "http://www.foo.com"
    */
   public static function getRootUrl($url)
   {
@@ -603,25 +585,6 @@ class PHPCrawlerUtils
   }
   
   /**
-   * Checks wether the given string is an UTF8-encoded string.
-   *
-   * Taken from //www.php.net/manual/de/function.mb-detect-encoding.php
-   * (comment from "prgss at bk dot ru")
-   * 
-   * @param string $string The string
-   * @return bool TRUE if the string is UTF-8 encoded.
-   */
-  public static function isUTF8String($string)
-  { 
-    $sample = @iconv('utf-8', 'utf-8', $string);
-    
-    if (md5($sample) == md5($string))
-      return true;
-    else
-      return false;
-  }
-  
-  /**
    * Checks whether the given string is a valid, urlencoded URL (by RFC)
    * 
    * @param string $string The string
@@ -634,26 +597,59 @@ class PHPCrawlerUtils
   }
   
   /**
-   * Decodes GZIP-encoded HTTP-data
+   * Gets the content from the given file or URL
+   *
+   * @param string  $uri                        The URI (like "file://../myfile.txt" or "http://foo.com")
+   * @param string  $request_user_agent_string  The UrserAgent-string to use for URL-requests
+   * @param bool    $throw_exception            If set to true, an exception will get thrown in case of an IO-error
+   * @return string The content of thr URI or NULL if the content couldn't be read
    */
-  public static function decodeGZipContent($content)
+  public static function getURIContent($uri, $request_user_agent_string = null, $throw_exception = false)
   {
-    return gzinflate(substr($content, 10, -8));
-  }
-  
-  /**
-   * Checks whether the given data is gzip-encoded
-   */
-  public static function isGzipEncoded($content)
-  {
-    if(substr($content, 0, 3) == "\x1f\x8b\x08")
+    $UriParts = PHPCrawlerUrlPartsDescriptor::fromURL($uri);
+    
+    $error_str = "";
+    
+    // If protocol is "file"
+    if ($UriParts->protocol == "file://")
     {
-      return true;
+      $file = preg_replace("#^file://#", "", $uri);
+      
+      if (file_exists($file) && is_readable($file))
+        return file_get_contents($file);
+      else
+        $error_str = "Error reading from file '".$file."'";
     }
+    
+    // If protocol is "http" or "https"
+    elseif ($UriParts->protocol == "http://" || $UriParts->protocol == "https://")
+    {
+      $uri = self::normalizeURL($uri);
+      $Request = new PHPCrawlerHTTPRequest();
+      $Request->setUrl(new PHPCrawlerURLDescriptor($uri));
+      
+      if ($request_user_agent_string !== null)
+        $Request->userAgentString = $request_user_agent_string;
+      
+      $DocInfo = $Request->sendRequest();
+      
+      if ($DocInfo->received == true)
+        return $DocInfo->source;
+      else
+        $error_str = "Error reading from URL '".$uri."'";
+    }
+    
+    // if protocol is not supported
     else
     {
-      return false;
+      $error_str = "Unsupported protocol-type '".$UriParts->protocol."'";
     }
+    
+    // Throw exception?
+    if ($throw_exception == true)
+      throw new Exception($error_str);
+    
+    return null;
   }
 }
 ?>

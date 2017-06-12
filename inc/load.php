@@ -1,15 +1,16 @@
 <?php
-$GLOBALS['pid'] = null;
+$GLOBALS['curDemoIndex'] = null;
 
 require_once __DIR__ . '/config.php';
-include __DIR__ . '/posts.php';
+require_once __DIR__ . '/demos.php';
+
 $GLOBALS['demoList'] = $demoList;
 
 function init($pid)
 {
-    $GLOBALS['pid']     = $pid;
-    $GLOBALS['curDemo'] = $GLOBALS['demoList'][$GLOBALS['pid']];
-    $GLOBALS['title']   = $GLOBALS['curDemo']['title'];
+    $GLOBALS['curDemoIndex'] = $pid;
+    $GLOBALS['curDemo']      = $GLOBALS['demoList'][$GLOBALS['curDemoIndex']];
+    $GLOBALS['title']        = $GLOBALS['curDemo']['title'];
 }
 
 function curPageURL($http = false)
@@ -26,30 +27,41 @@ function curPageURL($http = false)
 
 function head($title = '')
 {
-    $id   = $GLOBALS['pid'];
-    $demoList = $GLOBALS['demoList'];
+    $demoIndex = $GLOBALS['curDemoIndex'];
+    $demoList  = $GLOBALS['demoList'];
 
-    if ($title == '') {
-        $title = $GLOBALS['demoList'][$GLOBALS['pid']]['title'];
+    if ($title === '' && $demoIndex && isset($demoList[$demoIndex])) {
+        $title = $demoList[$demoIndex]['title'];
     }
 
-    require_once __DIR__ . '/views/head.php';
+    require_once __DIR__ . '/views/partial/head.php';
 
     if ($_SERVER['HTTP_HOST'] != 'demos' . '.sim') {
-        require_once __DIR__ . '/track.php';
+        require_once __DIR__ . '/views/partial/track.php';
     }
 }
 
 function top()
 {
     global $dbh;
-    include __DIR__ . '/views/header.php';
+    include __DIR__ . '/views/partial/header.php';
 }
 
 function footer()
 {
     if ($_SERVER['HTTP_HOST'] != 'demos.sima') {
-        $postURL = $GLOBALS['demoList'][$GLOBALS['pid']]['url'];
-        include __DIR__ . '/views/footer.php';
+        $postURL = $GLOBALS['demoList'][$GLOBALS['curDemoIndex']]['url'];
+        include __DIR__ . '/views/partial/footer.php';
     }
+}
+
+function getDemoInfo($demoID)
+{
+    foreach ($GLOBALS['demoList'] as $index => $demo) {
+        if ($demo['id'] === $demoID) {
+            $demo['index'] = $index;
+            return $demo;
+        }
+    }
+    return false;
 }

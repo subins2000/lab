@@ -60,7 +60,7 @@ class PHPCrawlerMemoryCookieCache extends PHPCrawlerCookieCacheBase
       $Cookie = $this->cookies[$target_domain][$hash];
       
       // Does the cookie-domain match?
-      // Tail-matching, see //curl.haxx.se/rfc/cookie_spec.html:
+      // Tail-matching, see http://curl.haxx.se/rfc/cookie_spec.html:
       // A domain attribute of "acme.com" would match host names "anvil.acme.com" as well as "shipping.crate.acme.com"
       // Seems like ".acme.com" should also match "anvil.acme.com", so just remove the dot
       

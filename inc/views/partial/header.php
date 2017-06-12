@@ -1,6 +1,6 @@
 <?php
 if ( isset($GLOBALS['curDemo']) ) {
-	$socialURL = "http:" . $GLOBALS['curDemo']['d'];
+	$socialURL = "http:" . $GLOBALS['curDemo']['demo'];
 } else {
 	$socialURL = curPageURL(true);
 }
@@ -59,9 +59,12 @@ if ( isset($GLOBALS['curDemo']) ) {
 			if( isset($GLOBALS['curDemo']) ){
 			?>
 				<div class="col s12 m12 l8 site-face-color center" id="demo-title">
-					<a href="<?php echo $GLOBALS['curDemo']['d'];?>"><?php
+					<a href="<?php echo $GLOBALS['curDemo']['demo'];?>">
+					<?php
 					echo $GLOBALS['curDemo']['title'];
-					?></a>
+					?>
+
+					</a>
 				</div>
 			<?php
 			}else{
@@ -73,11 +76,11 @@ if ( isset($GLOBALS['curDemo']) ) {
 							$sth = $dbh->query("SELECT * FROM `downloads`")->fetchAll();
 							$randomKey = array_rand($sth, 1);
 							$randomDemo = $GLOBALS['demoList'][$sth[$randomKey]["id"]];
-							echo "<a href='". $randomDemo["d"] ."'>\"" . $randomDemo["title"] . "\" was downloaded {$sth[$randomKey]["counter"]} times</a>";
+							echo "<a href='". $randomDemo["demo"] ."'>\"" . $randomDemo["title"] . "\" was downloaded {$sth[$randomKey]["counter"]} times</a>";
 						} else {
 							$randomKey = array_rand($GLOBALS['demoList'], 1);
 							$randomDemo = $GLOBALS['demoList'][$randomKey];
-							echo "A Random Experiment : <a href='". $randomDemo["d"] ."'>" . $randomDemo["title"] . "</a>";
+							echo "A Random Experiment : <a href='". $randomDemo["demo"] ."'>" . $randomDemo["title"] . "</a>";
 						}
 						?>
 					</span>
@@ -96,7 +99,7 @@ if ( isset($GLOBALS['curDemo']) ) {
 					<SCRIPT SRC="//go.adversal.com/ttj?id=1814483&size=468x60&promo_sizes=320x50,300x50,216x36&promo_alignment=center" TYPE="text/javascript"></SCRIPT>
 				</div>
 			</div>
-		<?php 
+		<?php
 			/*
 			<script type="text/javascript" language="javascript">
 			adlsi9 = "418bc39d5858a0c937a32dd62e84c30979|97279|9710";

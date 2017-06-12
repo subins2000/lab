@@ -1,5 +1,52 @@
 PHPCrawl Version-History / Changelog
 
+Version 0.83
+2015/01/27
+
+* Fixed bug #74: The crawler now doesn't treat hostnames case sensitive anymore and won't follow URLs differing
+just in hostname letter case more than one time (like "www.foo.net/page" and "www.FOO.net/page")
+        
+* Fixed bug #38: Detection for socket-EOF sometimes failed on SSL-connections under windows-OS causing a (infinite)
+hang of the crawling-process.
+        
+* Fixed bug #59: If obeyRobotsTxt() is set to TRUE, the crawler now doesn't throw any errors anymore when parsing any
+malformed robots.txt-files.
+        
+* Fixed bug #36: The crawler now uses the correct user-agent identification for requests of robots.txt-documents when it
+was changed by the user with setUserAgentString().
+            
+* A second, optional parameter "robots_txt_uri" is now available for obeyRobotsTxt().
+This let's the user alternatively specify the location of the robots.txt-file to obey manually as a URI (URL or file).
+            
+* Fixed bug #71: When running phpcrawl from the test-interface-GUI and output "Content-Size" was chosen, a
+"PHP Fatal error: Call to undefined method PHPCrawlerUtils::getHeaderTag()" was thrown.
+
+* Fixed bug/issue #61: Renamed method setPageLimit() to setRequestLimit() (because that is what this method does,
+it limits the number of requests). The method setPageLimit() still is present for compatibility reasons though, but
+was marked as deprecated.
+Also, all requests resulting in a server answer other than "2xx" are marked as "document not received" now 
+(PHPCrawlerDocumentInfo::received property). This makes the option setRequestLimit() with the optional
+"only_count_received_documents"-parameter set to behave as expected.
+
+* Feature Request #11: Added ability to set a limit to the crawling-depth, method setCrawlingDepthLimit() added.
+Property PHPCrawlerDocumentInfo::url_link_depth added.
+
+* Fixed bug #79: When using phpcrawl in multiprocess mode MPMODE_PARENT_EXECUTES_USERCODE, the array
+PHPCrawlerDocumentInfo::links_found_url_descriptors sometimes was missing some found URLs (and contained a lot
+of NULL entries).
+
+* Fixed undocumented bug: Links with a unknown protocol containing a minus (like "android-app://...") get rebuild
+correctly now and won't be followed anymore.
+
+* Fixed bug #76: Links containig numerical-reference-entities or hexadecimal-reference-entities (like &#x2f;) get
+rebuild and followed correctly now.
+
+* Fixed bug #25: Added an option/method "excludeLinkSearchDocumentSections()" to specify what HTML-document-sections
+should get ignored by the internal link-finding algorithm.
+This gives users the opportunity to prevent the crawler from finding links in HTML-comments and <script>-areas of
+HTML-pages (as reported/asked in the bugreport).
+
+
 Version 0.82
 2014/01/16
 
@@ -178,7 +225,7 @@ is set to E_STRICT or E_ALL.
 * Fixed bug 3465964: Robots.txt-documents get parsed correctly now, even if the "User-agent"-directive
 in robots.txt-files is written like "user-agent" or "User-Agent".
 
-* Fixed bug 3485155: Links like "test.htm?redirect=//www.foo.ie&a=b" get recognized and rebuild
+* Fixed bug 3485155: Links like "test.htm?redirect=http://www.foo.ie&a=b" get recognized and rebuild
 correctly now.
 
 * Fixed bug 3504517: Requests for links containing special characters (like "הצü") sometimes didn't work
@@ -256,7 +303,7 @@ setting up the link extraction manually.
 handlePageData(), especially information about all found links in the current
 page is available now. Method disableExtendedLinkInfo() added.
 
-* The crawler now is able to handle links like "//www.foo.com:123" correctly
+* The crawler now is able to handle links like "http://www.foo.com:123" correctly
 and will send requests to the correct port. Method setPort() added.
 
 * The content of pages and files now can be received/streamed diretly to a temporary
@@ -285,7 +332,7 @@ host is changing a lookup will be done once. This improves performance a little 
 * Fixed problem with rebuilding links like "*foo".
 
 * Fixed problem with splitting/rebuilding URLs like
-"//foo.bar.com/?//foo/bar.html".
+"http://foo.bar.com/?http://foo/bar.html".
 
 * Fixed problem that the crawler handled i.e. "foo.com" and "www.foo.com" as different
 hosts.
@@ -319,7 +366,7 @@ Just a few bugs were fixed in this version:
   anymore if it was set more than one time by the server. (Didn't really matter though)
 
 * Crawler will find links in metatags used with single quotation marks (') like
-  <META HTTP-EQUIV='refresh' CONTENT='foo; URL=//bar/'> now. Thanks Arsa!
+  <META HTTP-EQUIV='refresh' CONTENT='foo; URL=http://bar/'> now. Thanks Arsa!
 
 * HTTP 1.0 requests will be send now because of problems with HTTP 1.1 headers and
   chunked content. Thanks Arsa again! 

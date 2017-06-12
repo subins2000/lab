@@ -7,7 +7,7 @@
 class PHPCrawlerDocumentInfo
 { 
   /**
-   * The complete, full qualified URL of the page or file, e.g. "//www.foo.com/bar/page.html?x=y".
+   * The complete, full qualified URL of the page or file, e.g. "http://www.foo.com/bar/page.html?x=y".
    *
    * @var string
    * @section 1 URL-related information
@@ -15,7 +15,15 @@ class PHPCrawlerDocumentInfo
   public $url = "";
   
   /**
-   * The protocol-part of the URL of the page or file, e.g. "//"
+   * The linking-depth of the URL related to the entry-URL of the crawling-process.
+   *
+   * @var int
+   * @section 1 URL-related information
+   */
+  public $url_link_depth = null;
+  
+  /**
+   * The protocol-part of the URL of the page or file, e.g. "http://"
    *
    * @var string
    * @section 1 URL-related information
