@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "klein/klein",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/klein/klein.php.git",
-                "reference": "94a057462f1f2de95450dc729c65b23b12c48557"
+                "reference": "6549676cc831b9417332b3d9485c64bbf7bac728"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/klein/klein.php/zipball/94a057462f1f2de95450dc729c65b23b12c48557",
-                "reference": "94a057462f1f2de95450dc729c65b23b12c48557",
+                "url": "https://api.github.com/repos/klein/klein.php/zipball/6549676cc831b9417332b3d9485c64bbf7bac728",
+                "reference": "6549676cc831b9417332b3d9485c64bbf7bac728",
                 "shasum": ""
             },
             "require": {
@@ -61,7 +61,7 @@
                 "routing",
                 "sinatra"
             ],
-            "time": "2016-11-01 06:01:39"
+            "time": "2017-02-01 23:08:58"
         }
     ],
     "packages-dev": [],

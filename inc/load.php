@@ -2,7 +2,8 @@
 $GLOBALS['pid'] = null;
 
 require_once __DIR__ . '/config.php';
-include __DIR__ . '/posts.php';
+require_once __DIR__ . '/demos.php';
+
 $GLOBALS['demoList'] = $demoList;
 
 function init($pid)
@@ -26,14 +27,14 @@ function curPageURL($http = false)
 
 function head($title = '')
 {
-    $id   = $GLOBALS['pid'];
+    $id       = $GLOBALS['pid'];
     $demoList = $GLOBALS['demoList'];
 
     if ($title == '') {
         $title = $GLOBALS['demoList'][$GLOBALS['pid']]['title'];
     }
 
-    require_once __DIR__ . '/views/head.php';
+    require_once __DIR__ . '/views/partial/head.php';
 
     if ($_SERVER['HTTP_HOST'] != 'demos' . '.sim') {
         require_once __DIR__ . '/track.php';
@@ -43,13 +44,24 @@ function head($title = '')
 function top()
 {
     global $dbh;
-    include __DIR__ . '/views/header.php';
+    include __DIR__ . '/views/partial/header.php';
 }
 
 function footer()
 {
     if ($_SERVER['HTTP_HOST'] != 'demos.sima') {
         $postURL = $GLOBALS['demoList'][$GLOBALS['pid']]['url'];
-        include __DIR__ . '/views/footer.php';
+        include __DIR__ . '/views/partial/footer.php';
     }
+}
+
+function getDemoInfo($demoID)
+{
+    foreach ($GLOBALS['demoList'] as $index => $demo) {
+        if ($demo['id'] === $demoID) {
+            $demo['index'] = $index;
+            return $demo;
+        }
+    }
+    return false;
 }

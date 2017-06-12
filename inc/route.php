@@ -17,27 +17,35 @@ $klein->respond('GET', '/download/[s:demoID]', function ($request) {
     require __DIR__ . '/views/download.php';
 });
 
-$klein->respond('GET', '/download-confirm/[s:demoID]', function ($request) {
-    $demoID = $request->demoID;
+$klein->respond('GET', '/download-confirm/[s:demoIndex]', function ($request, $response) use ($dbh, $siteURL) {
+    $demoIndex = $request->demoIndex;
 
-    if (isset($GLOBALS['demoList'][$request->demoID])) {
+    if (isset($GLOBALS['demoList'][$demoIndex]) && isset($GLOBALS['demoList'][$demoIndex]['download'])) {
         $sql = $dbh->prepare('SELECT 1 FROM `downloads` WHERE `id` = ?');
-        $sql->execute(array($demoID));
+        $sql->execute(array($demoIndex));
 
         if ($sql->rowCount() === 0) {
             $sql = $dbh->prepare("INSERT INTO `downloads` (`id`, `counter`) VALUES (?, '1')");
-            $sql->execute(array($demoID));
+            $sql->execute(array($demoIndex));
         } else {
             $sql = $dbh->prepare('UPDATE `downloads` SET `counter` = `counter` + 1 WHERE `id` = ?');
-            $sql->execute(array($_GET['id']));
+            $sql->execute(array($demoIndex));
         }
-        
-        $url = $GLOBALS['demoList'][$demoID]['down'];
-        header("Location: $url");
+
+        $download = $GLOBALS['demoList'][$demoIndex]['download'];
+        if ($download['type'] === 'github') {
+            $url = $download['url'];
+        } else {
+            $url = $siteURL . '/assets/downloads/' . $download['file'] . '.zip';
+        }
+        var_dump($url);
+        //$response->redirect($url);
+    } else {
+        $response->status(404);
     }
 });
 
-$klein->respond('404', function ($request) {
+$klein->onHttpError('404', function ($request) {
     $page = $request->uri();
     require __DIR__ . '/views/404.php';
 });
