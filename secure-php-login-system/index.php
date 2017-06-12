@@ -9,7 +9,7 @@ init(1);
 </head><body>
 <?php top();?>
 <div class="container" id="content">
-<p>There is a simple, much better, more secure login system called <a href="<?php echo $GLOBALS['demoList'][27]['d']; ?>">logSys</a>. I HIGHLY advice you to use that instead of this.</p>
+<p>There is a simple, much better, more secure login system called <a href="<?php echo $GLOBALS['demoList'][27]['demo']; ?>">logSys</a>. I HIGHLY advice you to use that instead of this.</p>
 <form method="POST" action="index.php" style="border:1px solid black;display:table;margin:0px auto;padding-left:10px;padding-bottom:5px;">
 <table width="300" cellpadding="4" cellspacing="1">
 <tr><td><td colspan="3"><strong>User Login</strong></td></tr>
