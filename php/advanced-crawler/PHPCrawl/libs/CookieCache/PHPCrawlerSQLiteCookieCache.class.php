@@ -88,7 +88,7 @@ class PHPCrawlerSQLiteCookieCache extends PHPCrawlerCookieCacheBase
     for ($x=0; $x<$cnt; $x++)
     {
       // Does the cookie-domain match?
-      // Tail-matching, see //curl.haxx.se/rfc/cookie_spec.html:
+      // Tail-matching, see http://curl.haxx.se/rfc/cookie_spec.html:
       // A domain attribute of "acme.com" would match host names "anvil.acme.com" as well as "shipping.crate.acme.com"
       if ($rows[$x]["domain"] == $url_parts["host"] || preg_match("#".preg_quote($rows[$x]["domain"])."$#", $url_parts["host"]))
       {

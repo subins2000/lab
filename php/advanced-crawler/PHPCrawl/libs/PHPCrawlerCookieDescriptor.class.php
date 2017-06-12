@@ -82,7 +82,7 @@ class PHPCrawlerCookieDescriptor
    */
   public function __construct($source_url, $name, $value, $expires = null, $path = null, $domain = null)
   {
-    // For cookie-specs, see e.g. //curl.haxx.se/rfc/cookie_spec.html
+    // For cookie-specs, see e.g. http://curl.haxx.se/rfc/cookie_spec.html
     
     $this->name = $name;
     $this->value = $value;
