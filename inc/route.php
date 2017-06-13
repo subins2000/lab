@@ -38,8 +38,7 @@ $klein->respond('GET', '/download-confirm/[s:demoIndex]', function ($request, $r
         } else {
             $url = $siteURL . '/assets/downloads/' . $download['file'] . '.zip';
         }
-        var_dump($url);
-        //$response->redirect($url);
+        $response->redirect($url);
     } else {
         $response->status(404);
     }
