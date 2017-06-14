@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../inc/load.php';
+require_once __DIR__ . '/../../inc/load.php';
 init(7);
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ init(7);
      <tr>
       <td>
        <h2>HTML</h2>
-       <textarea class="codes" id="html" placeholder="Your HTML Code HERE"></textarea>      
+       <textarea class="codes" id="html" placeholder="Your HTML Code HERE"></textarea>
       </td>
       <td>
        <h2>CSS</h2>
@@ -55,7 +55,7 @@ init(7);
   }
   </style>
   <?php
-  
+
   footer();
   ?>
  </body>

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../inc/load.php';
+require_once __DIR__ . '/../../inc/load.php';
 init(13);
 ?>
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ init(13);
    <?php
    if(isset($_POST['submit'])){
     $img=$_FILES['img'];
-    if($img['name']==''){  
+    if($img['name']==''){
      echo "<h2>An Image Please.</h2>";
     }else{
      $filename = $img['tmp_name'];

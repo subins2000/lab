@@ -1,10 +1,10 @@
 <?php
 session_start();
-if(!isset($_SESSION['user_id'])){
-  $_SESSION['user_id'] = rand(0, 1024);
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['user_id'] = rand(0, 1024);
 }
 
-require_once __DIR__ . '/../../../inc/load.php';
+require_once __DIR__ . '/../../inc/load.php';
 init(42);
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ init(42);
   <body>
     <?php top();?>
     <div class="container" id="content">
-      
+
       <p>Choose files and click Upload</p>
       <form id='upload_form'>
         <input type='file' id='file_chooser' multiple />

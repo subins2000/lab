@@ -15,13 +15,15 @@ function init($pid)
 
 function curPageURL($http = false)
 {
+    global $siteHostname;
+
     if ($http) {
         $pageURL = 'http://';
     } else {
         $pageURL = 'https://';
     }
 
-    $pageURL .= $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+    $pageURL .= $siteHostname . $_SERVER['REQUEST_URI'];
     return $pageURL;
 }
 

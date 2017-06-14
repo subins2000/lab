@@ -2,7 +2,7 @@
 function share($r)
 {
     if ($r == true) {
-        $urltbs = 'http://' . $_SERVER['SERVER_NAME'];
+        $urltbs = 'http://' . $_SERVER['HTTP_HOST'];
     } else {
         $urltbs = curPageURL();
     }

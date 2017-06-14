@@ -1,6 +1,6 @@
 <?php
 if ( isset($GLOBALS['curDemo']) ) {
-	$socialURL = "http:" . $GLOBALS['curDemo']['demo'];
+	$socialURL = str_replace('https', 'http', $GLOBALS['curDemo']['demo']);
 } else {
 	$socialURL = curPageURL(true);
 }
