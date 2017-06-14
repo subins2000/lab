@@ -12,7 +12,7 @@ init(40);
 		<script src="//lab.subinsb.com/projects/Francium/voice/Fr.voice.js"></script>
     -->
     
-    <script src="//lab.sim/projects/jquery/core/jquery-2.1.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="//lab.sim/projects/Francium/voice/recorder.js"></script>
 		<script src="//lab.sim/projects/Francium/voice/Fr.voice.js"></script>
     

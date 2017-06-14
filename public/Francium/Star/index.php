@@ -12,7 +12,7 @@ init(41);
   <head>
     <?php head();?>
     <link rel="stylesheet" href="css/Fr.star.css" />
-    <script src="//lab.sim/projects/jquery/core/jquery-latest.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//lab.subinsb.com/projects/Francium/star/Fr.star.js"></script>
     <script src="js/rate.js"></script>
   </head>

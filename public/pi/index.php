@@ -10,7 +10,7 @@ $digits = 8;
     <!--
     <script src="//lab.subinsb.com/projects/jquery/core/jquery-2.1.1.js"></script>
     -->
-    <script src="//lab.sim/projects/jquery/core/jquery-2.1.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/pi.js"></script>
     <link href="css/pi.css" rel="stylesheet" />
   </head>

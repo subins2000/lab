@@ -11,7 +11,7 @@ init(35);
 		<script src="//lab.subinsb.com/projects/jquery/voice/recorder.js"></script>
 		<script src="//lab.subinsb.com/projects/jquery/voice/jquery.voice.min.js"></script>
     -->
-    <script src="//lab.sim/projects/jquery/core/jquery-2.1.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script src="//lab.sim/projects/jquery/voice/recorder.js"></script>
 		<script src="//lab.sim/projects/jquery/voice/jquery.voice.min.js"></script>
     <script src="assets/ws.js"></script>
