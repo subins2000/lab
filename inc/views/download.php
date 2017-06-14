@@ -1,8 +1,8 @@
 <?php
-$demoIndex   = $demoInfo['index'];
-$demoTitle   = $demoInfo['title'];
-$tutorialURL = $demoInfo['url'];
-$demoURL     = $demoInfo['demo'];
+$demoIndex   = $this->demoInfo['index'];
+$demoTitle   = $this->demoInfo['title'];
+$tutorialURL = $this->demoInfo['url'];
+$demoURL     = $this->demoInfo['demo'];
 ?>
 <!DOCTYPE html>
 <html>
