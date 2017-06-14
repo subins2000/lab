@@ -4,7 +4,7 @@ if(!isset($_SESSION['user_id'])){
   $_SESSION['user_id'] = rand(0, 1024);
 }
 
-require_once __DIR__ . '/..//../../inc/load.php';
+require_once __DIR__ . '/../../../inc/load.php';
 init(42);
 ?>
 <!DOCTYPE html>

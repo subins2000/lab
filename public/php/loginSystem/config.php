@@ -56,7 +56,7 @@ include 'class.logsys.php';
     ),
     'two_step_login' => array(
         'send_callback' => function ($uid, $token) {
-            \Fr\LS::sendMail(\Fr\LS::getUser('email', $uid), 'logSys Two Step Verification', "Your account was logged in. To complete loggin in, type in this Two Step Verification Code : <blockquote>$token</blockquote><p>If you didn't attempt this login, ignore this email and conside <a href='//demos.subinsb.com/php/loginSystem/change.php'>updating your password</a>.</p><p>- <a href='//demos.subinsb.com'>Subin's Labs</a></p>");
+            \Fr\LS::sendMail(\Fr\LS::getUser('email', $uid), 'logSys Two Step Verification', "Your account was logged in. To complete loggin in, type in this Two Step Verification Code : <blockquote>$token</blockquote><p>If you didn't attempt this login, ignore this email and conside <a href='https://demos.subinsb.com/php/loginSystem/change.php'>updating your password</a>.</p><p>- <a href='https://demos.subinsb.com'>Subin's Labs</a></p>");
         },
         'instruction'   => 'A token was sent to your E-Mail address. Paste the token in the box below :',
     ),

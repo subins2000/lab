@@ -22,7 +22,7 @@
   <body>
   	<div id="wrapper">
     	<div class="container" id="content">
-    		<h1><a href="http://demos.sim/isl-profile-pic/">Support Kerala Blasters!</a></h1>
+    		<h1><a href="https://demos.sim/isl-profile-pic/">Support Kerala Blasters!</a></h1>
     		<p>Support Kerala Blasters by changing your profile picture</p>
     		<div id="preview">
           <div id="crop-area">

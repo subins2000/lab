@@ -12,7 +12,7 @@ if (isset($_GET[getenv('demo42_dir_list')])) {
     $array = array();
     foreach ($files as $file) {
         if (is_file($dir . $file)) {
-            echo "<a href='//demos.subinsb.com/ajax-image-upload-jquery/uploads/$file'>$file</a>   - " . date('F d Y H:i:s.', filemtime($dir . $file)) . '  -- ' . humanFilesize(filesize($dir . $file)) . '<br/>';
+            echo "<a href='https://demos.subinsb.com/ajax-image-upload-jquery/uploads/$file'>$file</a>   - " . date('F d Y H:i:s.', filemtime($dir . $file)) . '  -- ' . humanFilesize(filesize($dir . $file)) . '<br/>';
         }
     }
 }

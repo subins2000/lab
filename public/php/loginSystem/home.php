@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/..//../../inc/load.php';
+require_once __DIR__ . '/../../../inc/load.php';
 init(27);
 require "config.php";
 if( isset($_POST['newName']) ){

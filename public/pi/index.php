@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/..//../../inc/load.php';
+require_once __DIR__ . '/../../../inc/load.php';
 init(43);
 $digits = 8;
 ?>
@@ -19,7 +19,7 @@ $digits = 8;
     <div class="container" id="content">
       <h2>Finding The Value of Pi</h2>
       <p>
-        <a href="//demos.sim/pi/values.php" class="btn green">See Digits Already Found</a>
+        <a href="https://demos.sim/pi/values.php" class="btn green">See Digits Already Found</a>
       </p>
       <div class="controls">
         <a class="btn blue" id="connect">Connect To Server</a>
