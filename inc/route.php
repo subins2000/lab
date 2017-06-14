@@ -12,9 +12,16 @@ $klein->respond('GET', '/down.php', function ($request, $response) {
     }
 });
 
-$klein->respond('GET', '/download/[s:demoID]', function ($request) {
-    $demoID = $request->demoID;
-    require __DIR__ . '/views/download.php';
+$klein->respond('GET', '/download/[s:demoID]', function ($request, $response, $service) use ($klein) {
+    $demoInfo = getDemoInfo($request->demoID);
+
+    if ($demoInfo) {
+        $service->render(__DIR__ . '/views/download.php', array(
+            'demoInfo' => $demoInfo,
+        ));
+    } else {
+        $klein->abort(404);
+    }
 });
 
 $klein->respond('GET', '/download-confirm/[s:demoIndex]', function ($request, $response) use ($dbh, $siteURL) {
@@ -44,9 +51,13 @@ $klein->respond('GET', '/download-confirm/[s:demoIndex]', function ($request, $r
     }
 });
 
-$klein->onHttpError('404', function ($request) {
-    $page = $request->uri();
-    require __DIR__ . '/views/404.php';
+$klein->onHttpError(function ($code, $router) {
+    $page = $router->request()->uri();
+
+    $router->service()->render(__DIR__ . '/views/error.php', array(
+        'code' => $code,
+        'page' => $page,
+    ));
 });
 
 $klein->dispatch();
