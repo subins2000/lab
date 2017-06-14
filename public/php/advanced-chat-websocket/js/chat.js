@@ -206,7 +206,7 @@ $(document).ready(function(){
 					}, false);
 					return xhr;
 				},
-				url: "http://demos.sim/php/advanced-chat-websocket/upload.php",
+				url: "https://demos.sim/php/advanced-chat-websocket/upload.php",
 				type: "POST",
 				data: fd,
 				processData: false,

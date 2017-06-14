@@ -13,8 +13,8 @@ init(40);
     -->
     
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		<script src="//lab.sim/projects/Francium/voice/recorder.js"></script>
-		<script src="//lab.sim/projects/Francium/voice/Fr.voice.js"></script>
+		<script src="//lab.subinsb.com/projects/Francium/voice/recorder.js"></script>
+		<script src="//lab.subinsb.com/projects/Francium/voice/Fr.voice.js"></script>
     
     <script src="js/time.js"></script>
     <script src="js/chat.js"></script>
