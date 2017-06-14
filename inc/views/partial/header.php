@@ -51,7 +51,7 @@ if ( isset($GLOBALS['curDemo']) ) {
 				if( isset($GLOBALS['curDemo']) ){
 					echo '<a href="'. $GLOBALS['curDemo']['url'] .'">See Tutorial</a>';
 				}else{
-					echo '<a href="//subinsb.com">Blog</a>';
+					echo '<a href="https://subinsb.com">Blog</a>';
 				}
 				?>
 			</div>
@@ -89,7 +89,7 @@ if ( isset($GLOBALS['curDemo']) ) {
 			}
 			?>
 			<div class="col s2 m2 l2 red hide-on-med-and-down center">
-				<a href="//subinsb.com/donate">Donate</a>
+				<a href="https://subinsb.com/donate">Donate</a>
 			</div>
 		</div>
 	</div>

@@ -11,5 +11,6 @@ if (!isset($dbh)) {
     $dbh      = new PDO('mysql:dbname=' . $dbname . ';host=' . $hostname . ';port=' . $port, $username, $password);
 
     $siteHostname = 'demos.sim';
-    $siteURL      = 'http://demos.sim/';
+    $siteURL      = 'https://demos.sim';
+    $blogURL      = 'https://subinsb.com';
 }

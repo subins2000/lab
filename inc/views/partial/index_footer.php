@@ -16,9 +16,9 @@ function share($r)
 ?>
 <div class="footer">
   <div>
-      <a href="//demos.subinsb.com/" style="color:white;text-decoration:none;" class="btn blue">Home</a>
-      <a href="//subinsb.com" style="color:white;text-decoration:none;margin-left:10px;" class="btn blue">Blog</a>
-      <a href="//subinsb.com/donate" style="color:white;text-decoration:none;margin-left:10px;" class="btn blue">Donate</a>
+      <a href="https://demos.subinsb.com/" style="color:white;text-decoration:none;" class="btn blue">Home</a>
+      <a href="https://subinsb.com" style="color:white;text-decoration:none;margin-left:10px;" class="btn blue">Blog</a>
+      <a href="https://subinsb.com/donate" style="color:white;text-decoration:none;margin-left:10px;" class="btn blue">Donate</a>
       &nbsp;&nbsp;&nbsp;
   </div><br/>
   <div>
@@ -29,7 +29,7 @@ function share($r)
     ?>
   </div><br/>
   <div>
-  &copy; Copyleft <a href="//subinsb.com">Subin Siby</a>                                                         <?php echo '2011-' . date('Y'); ?>
+  &copy; Copyleft <a href="https://subinsb.com">Subin Siby</a>                                                         <?php echo '2011-' . date('Y'); ?>
   </div>
   <?php
   require_once __DIR__ . '/track.php';

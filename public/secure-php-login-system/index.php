@@ -18,7 +18,7 @@ init(1);
 <tr><td></td><td></td><td><input type="submit" name="Submit" value="Login"></td>
 </tr>
 </table>
-E-Mail & Password Can be found <a target="_blank" href='//subinsb.com/php-secure-login-system'>here.</a>
+E-Mail & Password Can be found <a target="_blank" href='https://subinsb.com/php-secure-login-system'>here.</a>
 <?php
 session_start();
 if (isset($_SESSION['user'])) {header('Location:home.php');}
