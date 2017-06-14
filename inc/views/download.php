@@ -1,18 +1,8 @@
 <?php
-if (!isset($demoID)) {
-    exit;
-}
-
-$demoInfo = getDemoInfo($demoID);
-
-if ($demoInfo) {
-    $demoIndex   = $demoInfo['index'];
-    $demoTitle   = $demoInfo['title'];
-    $tutorialURL = $demoInfo['url'];
-    $demoURL     = $demoInfo['demo'];
-} else {
-    $demoTitle = $tutorialURL = $demoURL = false;
-}
+$demoIndex   = $demoInfo['index'];
+$demoTitle   = $demoInfo['title'];
+$tutorialURL = $demoInfo['url'];
+$demoURL     = $demoInfo['demo'];
 ?>
 <!DOCTYPE html>
 <html>
