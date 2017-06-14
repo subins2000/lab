@@ -51,6 +51,6 @@ if ($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/index.php')
         ?>
       </div>
     </div>
-    <?php require_once __DIR__ . '/inc/views/partial/index_footer.php';?>
+    <?php require_once __DIR__ . '/../inc/views/partial/index_footer.php';?>
   </body>
 </html>

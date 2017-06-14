@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/../inc/views/partial/track.php";
+require_once __DIR__ . "/../../inc/views/partial/track.php";
 ?>
 <div id="comments">
   <p>Created by <a href="http://subinsb.com">Subin Siby</a>.</p>
