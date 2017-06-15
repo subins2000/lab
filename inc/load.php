@@ -1,5 +1,5 @@
 <?php
-$GLOBALS['curDemoIndex'] = null;
+$curDemoIndex = $GLOBALS['curDemoIndex'] = $curDemo = $GLOBALS['curDemo'] = null;
 
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/demos.php';
