@@ -452,4 +452,15 @@ $demoList = array(
             'url'  => '//github.com/subins2000/profile-picture-framer/archive/master.zip',
         ),
     ),
+
+    46 => array(
+        'id'       => 'francium-cryptodonate',
+        'title'    => 'CryptoDonate',
+        'url'      => $blogURL . '/cryptodonate',
+        'demo'     => $siteURL . '/Francium/CryptoDonate',
+        'download' => array(
+            'type' => 'github',
+            'url'  => '//github.com/subins2000/CryptoDonate/archive/master.zip',
+        ),
+    ),
 );
