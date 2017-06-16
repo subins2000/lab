@@ -14,7 +14,7 @@ init(14);
    <?php
    function sendMail($email, $subject, $msg)
    {
-       $api_key = 'key-6qtg93oyx-ffc5aseuumo8-sn1x3jov2'; /* Api Key got from https://mailgun.com/cp/my_account */
+       $api_key = getenv('demo27_mailgun_key'); /* Api Key got from https://mailgun.com/cp/my_account */
        $domain  = 'subinsb.com'; /* Domain Name you given to Mailgun */
        $ch      = curl_init();
        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
