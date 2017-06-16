@@ -7,7 +7,7 @@ init(3);
  <?php head();?>
  <script src="//code.jquery.com/jquery-1.9.0.min.js"></script>
  <script src="//malsup.github.io/jquery.form.js"></script>
- <title>Uploading An Image Using AJAX In jQuery With PHP Example</title><?php include('../inc/track.php');?>
+ <title>Uploading An Image Using AJAX In jQuery With PHP Example</title>
 </head><body>
 <?php top();?>
 <div class="container" id="content">

@@ -6,7 +6,7 @@ init(11);
 <html><head>
  <?php head();?>
 <script src="//code.jquery.com/jquery-latest.min.js"></script>
-<title>Change URL Without Reloading Page</title><?php include('../inc/track.php');?>
+<title>Change URL Without Reloading Page</title>
 </head><body>
 <?php top();?>
 <div class="container" id="content">

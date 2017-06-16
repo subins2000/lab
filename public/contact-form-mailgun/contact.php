@@ -7,7 +7,6 @@ init(14);
  <head>
    <?php head();?>
   <title><?php echo $GLOBALS['title']; ?></title>
-  <?php include '../inc/track.php';?>
  </head>
  <body>
  <?php top();?>

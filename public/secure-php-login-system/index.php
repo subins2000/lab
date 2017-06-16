@@ -5,7 +5,7 @@ init(1);
 <!DOCTYPE html>
 <html><head>
  <?php head();?>
-<title>MySQL injection free Secure Login System - PHP Demo</title><?php include '../inc/track.php';?>
+<title>MySQL injection free Secure Login System - PHP Demo</title>
 </head><body>
 <?php top();?>
 <div class="container" id="content">

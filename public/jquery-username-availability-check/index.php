@@ -9,7 +9,6 @@ init(8);
   <script src="//code.jquery.com/jquery-latest.min.js"></script>
   <script src="checker.js"></script>
   <title>jQuery Username Availablity Checker</title>
-  <?php include('../inc/track.php');?>
  </head>
  <body>
  <?php top();?>

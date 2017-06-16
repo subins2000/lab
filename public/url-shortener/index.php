@@ -6,7 +6,7 @@ init(4);
 <html><head>
  <?php head();?>
  <script src="//code.jquery.com/jquery-1.9.0.min.js"></script>
- <title>URL Shorting Service With PHP & jQuery</title><?php include('../inc/track.php');?>
+ <title>URL Shorting Service With PHP & jQuery</title>
 </head><body>
 <?php top();?>
 <div class="container" id="content">

@@ -11,7 +11,6 @@ init(10);
   <script src="datepicker.js"></script>
   <script src="birthchecker.js"></script>
   <title>jQuery Birthday Form Field & Checker</title>
-  <?php include('../inc/track.php');?>
  </head>
  <body>
  <?php top();?>

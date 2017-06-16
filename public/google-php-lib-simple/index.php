@@ -5,7 +5,7 @@ init(0);
 <!DOCTYPE html>
 <html><head>
  <?php head();?>
-<title>Google PHP Library Simplified Demo</title><?php include('../inc/track.php');?>
+<title>Google PHP Library Simplified Demo</title>
 <script>
 function opesn(){
 new_window = window.open('server.php','name','height=400,width=500');

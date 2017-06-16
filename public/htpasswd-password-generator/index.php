@@ -5,7 +5,7 @@ init(2);
 <!DOCTYPE html>
 <html><head>
  <?php head();?>
-<title>Password for .HTPASSWD Generator</title><?php include('../inc/track.php');?>
+<title>Password for .HTPASSWD Generator</title>
 </head><body>
 <?php top();?>
 <div class="container" id="content">

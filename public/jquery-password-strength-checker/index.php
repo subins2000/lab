@@ -9,7 +9,6 @@ init(9);
   <script src="//code.jquery.com/jquery-latest.min.js"></script>
   <script src="passchecker.js"></script>
   <title>Simple jQuery Password Strength Checker</title>
-  <?php include('../inc/track.php');?>
  </head>
  <body>
  <?php top();?>

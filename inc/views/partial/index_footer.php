@@ -31,7 +31,4 @@ function share($r)
   <div>
   &copy; Copyleft <a href="https://subinsb.com">Subin Siby</a>                                                         <?php echo '2011-' . date('Y'); ?>
   </div>
-  <?php
-  require_once __DIR__ . '/track.php';
-  ?>
 </div>

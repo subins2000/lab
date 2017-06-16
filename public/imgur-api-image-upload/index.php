@@ -7,7 +7,6 @@ init(13);
  <head>
    <?php head();?>
   <title>Image Upload Using Imgur API</title>
-  <?php include('../inc/track.php');?>
  </head>
  <body>
  <?php top();?>
