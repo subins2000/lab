@@ -40,6 +40,19 @@ init(46);
                         <input class="validate" id="address" placeholder="Wallet Address" type="text" value="3Q2zmZA3LsW5JdxkJEPDRbsXu2YzzMQmBQ"/>
                     </div>
                     <div class="input-field col s12">
+                        <div for="size">
+                            Size
+                        </div>
+                        <select id="size" class="browser-default">
+                            <option value="">
+                                Normal
+                            </option>
+                            <option value="large">
+                                Large
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input-field col s12">
                         <div for="theme">
                             Theme
                         </div>
@@ -47,7 +60,7 @@ init(46);
                             <option value="">
                                 Light
                             </option>
-                            <option value="dark">
+                            <option value="dark" selected="selected">
                                 Dark
                             </option>
                         </select>
@@ -70,6 +83,15 @@ init(46);
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
             <script src="//lab.subinsb.com/projects/francium/cryptodonate/cryptodonate.js" type="text/javascript"></script>
             <script src="js/widget-maker.js" type="text/javascript"></script>
+            <style>
+                #preview {
+                    border: 2px dashed #000;
+                    padding: 20px 10px;
+                }
+                #code-wrapper {
+                    padding-left: 2em;
+                }
+            </style>
         </div>
         <?php
         footer();
