@@ -65,5 +65,7 @@ $LS = new Fr\LS([
             $LS->sendMail($LS->getUser('email', $uid), 'logSys Two Step Verification', "Your account was logged in. To complete logging in, type in this Two Step Verification Code : <blockquote>$token</blockquote><p>If you didn't attempt this login, ignore this email and conside <a href='https://demos.subinsb.com/php/loginSystem/change.php'>updating your password</a>.</p><p>- <a href='https://demos.subinsb.com'>Subin's Labs</a></p>");
         },
         'instruction'   => 'A token was sent to your E-Mail address. Paste the token in the box below :',
+
+        'devices_table' => 'logSys_user_devices'
     ],
 ]);
