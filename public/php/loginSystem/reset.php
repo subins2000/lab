@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../../inc/load.php';
 init(27);
-require "config.php";
+require 'config.php';
 ?>
 <html>
   <head>
@@ -12,7 +12,7 @@ require "config.php";
     <div class="container" id="content">
       <h3>Log In</h3>
       <?php
-      \Fr\LS::forgotPassword();
+      $LS->forgotPassword();
       ?>
     </div>
     <?php footer();?>
