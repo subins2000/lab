@@ -91,6 +91,9 @@ init(46);
                 #code-wrapper {
                     padding-left: 2em;
                 }
+                #cryptodonate-dialog input{
+                    background: #fff;
+                }
             </style>
         </div>
         <?php
