@@ -1,6 +1,6 @@
-$musername = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
-$mpassword = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
-$hostname  = getenv('OPENSHIFT_MYSQL_DB_HOST');
-$db        = getenv('OPENSHIFT_GEAR_NAME');
-$port      = getenv('OPENSHIFT_MYSQL_DB_PORT');
+$musername = getenv('MYSQL_USER');
+$mpassword = getenv('MYSQL_PASSWORD');
+$hostname  = getenv('MYSQL_SERVICE_HOST');
+$db        = getenv('MYSQL_DATABASE');
+$port      = getenv('MYSQL_SERVICE_PORT');
 $dbh=new PDO('mysql:dbname='.$db.';host='.$hostname.";port=".$port, $musername, $mpassword);
