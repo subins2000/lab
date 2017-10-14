@@ -6,7 +6,7 @@ init(29);
 <html>
  	<head>
   		<?php head();?>
-  		<script src="//demos.sim/assets/jquery.min.js"></script> <!-- //code.jquery.com/jquery-1.9.0.min.js -->
+  		<script src="<?php echo $siteURL;?>/assets/jquery.min.js"></script> <!-- //code.jquery.com/jquery-1.9.0.min.js -->
   		<script src="form.js"></script>
   		<link href="form.css" rel="stylesheet" />
  	</head>

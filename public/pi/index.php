@@ -19,7 +19,7 @@ $digits = 8;
     <div class="container" id="content">
       <h2>Finding The Value of Pi</h2>
       <p>
-        <a href="https://demos.sim/pi/values.php" class="btn green">See Digits Already Found</a>
+        <a href="<?php echo $siteURL;?>/pi/values.php" class="btn green">See Digits Already Found</a>
       </p>
       <div class="controls">
         <a class="btn blue" id="connect">Connect To Server</a>
