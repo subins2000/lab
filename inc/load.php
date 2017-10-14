@@ -29,7 +29,7 @@ function curPageURL($http = false)
 
 function head($title = '')
 {
-    global $siteHostname;
+    global $siteURL, $siteHostname;
     $demoIndex = $GLOBALS['curDemoIndex'];
     $demoList  = $GLOBALS['demoList'];
 
@@ -46,13 +46,14 @@ function head($title = '')
 
 function top()
 {
-    global $dbh;
+    global $siteURL, $dbh;
     include __DIR__ . '/views/partial/header.php';
 }
 
 function footer()
 {
-    global $siteHostname;
+    global $siteURL, $siteHostname;
+
     if ($_SERVER['HTTP_HOST'] != $siteHostname) {
         $postURL = $GLOBALS['demoList'][$GLOBALS['curDemoIndex']]['url'];
         include __DIR__ . '/views/partial/footer.php';
