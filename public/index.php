@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/index.php')
     <?php
     head('index');
     ?>
-    <link href="//demos.sim/assets/css/index.css" rel="stylesheet" />
+    <link href="<?php echo $siteURL;?>/assets/css/index.css" rel="stylesheet" />
   </head>
   <body>
     <?php top();?>

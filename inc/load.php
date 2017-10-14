@@ -29,6 +29,7 @@ function curPageURL($http = false)
 
 function head($title = '')
 {
+    global $siteHostname;
     $demoIndex = $GLOBALS['curDemoIndex'];
     $demoList  = $GLOBALS['demoList'];
 
@@ -38,7 +39,7 @@ function head($title = '')
 
     require_once __DIR__ . '/views/partial/head.php';
 
-    if ($_SERVER['HTTP_HOST'] != 'demos' . '.sim') {
+    if ($_SERVER['HTTP_HOST'] != $siteHostname) {
         require_once __DIR__ . '/views/partial/track.php';
     }
 }
@@ -51,7 +52,8 @@ function top()
 
 function footer()
 {
-    if ($_SERVER['HTTP_HOST'] != 'demos.sima') {
+    global $siteHostname;
+    if ($_SERVER['HTTP_HOST'] != $siteHostname) {
         $postURL = $GLOBALS['demoList'][$GLOBALS['curDemoIndex']]['url'];
         include __DIR__ . '/views/partial/footer.php';
     }

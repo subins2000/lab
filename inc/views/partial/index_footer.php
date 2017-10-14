@@ -23,7 +23,7 @@ function share($r)
   </div><br/>
   <div>
     <?php
-    if ($_SERVER['SERVER_NAME'] != 'demos.sim') {
+    if ($_SERVER['SERVER_NAME'] != $siteHostname) {
         echo share(true);
     }
     ?>

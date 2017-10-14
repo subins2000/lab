@@ -2,7 +2,7 @@
 session_start();
 require 'google_api.php';
 /*Configuration*/
-$redirect_url="//demos.sim/google-php-lib-simple/server.php";/*URL to visit after user has authorised your app in Google Accounts*/
+$redirect_url = $siteURL . "/google-php-lib-simple/server.php";/*URL to visit after user has authorised your app in Google Accounts*/
 $scopes="https://www.googleapis.com/auth/userinfo.email,https://www.googleapis.com/auth/userinfo.profile,https://www.googleapis.com/auth/plus.login";/*Seperate with a comma. See the list of scopes @ //*/
 $client_id="1031485682646.apps.googleusercontent.com";
 $client_secret=getenv('demo1_google_client_secret');

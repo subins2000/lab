@@ -17,7 +17,7 @@ init(11);
 <script>
 function checkJSNetConnection(){
  var xhr = new XMLHttpRequest();
- var file = "//demos.sim/assets/dot.png";
+ var file = "<?php echo $siteURL;?>/assets/dot.png";
  var r = Math.round(Math.random() * 10000); 
  xhr.open('HEAD', file + "?subins=" + r, false); 
  try {
@@ -42,7 +42,7 @@ function checkNetConnection(){
  jQuery.ajaxSetup({async:false});
  re="";
  r=Math.round(Math.random() * 10000);
- $.get("//demos.sim/assets/dot.png",{subins:r},function(d){
+ $.get("<?php echo $siteURL;?>/assets/dot.png",{subins:r},function(d){
   re=true;
  }).error(function(){
   re=false;

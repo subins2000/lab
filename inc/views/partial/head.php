@@ -1,5 +1,5 @@
 <link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" async="async" />
-<link href="//demos.sim/assets/css/style.css" rel="stylesheet" async="async" />
+<link href="<?php echo $siteURL;?>/assets/css/style.css" rel="stylesheet" async="async" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta charset="utf-8" />

@@ -14,7 +14,7 @@ if (file_exists($name)){
  $subinsbshort = fopen('.'.$dir.$name.'/index.php', 'x') or die('{"stat":"0"}');
 }
 if(fwrite($subinsbshort,'<?php header("Location:'.$url.'");?>')){
- echo '{"stat":"1","url":"//demos.sim/url-shortener'.$dir.$name.'","name":"'.$name.'"}';
+ echo '{"stat":"1","url":"<?php echo $siteURL;?>/url-shortener'.$dir.$name.'","name":"'.$name.'"}';
 }else{
  die('{"stat":"0"}');
 }

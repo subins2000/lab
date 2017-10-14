@@ -1,5 +1,5 @@
 <?php
-if($_SERVER['HTTP_HOST'] != "demos.sim"){
+if($_SERVER['HTTP_HOST'] != $siteHostname){
 ?>
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Ubuntu' async="async" type='text/css' media='all' />
 <?php

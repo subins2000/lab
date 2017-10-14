@@ -8,7 +8,7 @@ if ( isset($GLOBALS['curDemo']) ) {
 <nav class="nav-extended" id="site-header">
 	<div class="row site-face-color">
 		<div class="col s12 m7 l4 valign-wrapper">
-			<a href="//demos.sim" id="site-logo" class="valign">Subin's Lab</a>
+			<a href="<?php echo $siteURL;?>" id="site-logo" class="valign">Subin's Lab</a>
 		</div>
 		<div class="center hide-on-small-only col m5 l4">
 			<div class="social-btn">
@@ -93,7 +93,7 @@ if ( isset($GLOBALS['curDemo']) ) {
 			</div>
 		</div>
 	</div>
-		<?php /* if($_SERVER["SERVER_NAME"]!='demos.sim'){ ?>
+		<?php /* if($_SERVER["SERVER_NAME"]!=$siteHostname){ ?>
 			<div style="position: absolute;right: 10px;top: 0px;min-height:60px;">
 				<div style="vertical-align: middle;display: table-cell;">
 					<SCRIPT SRC="//go.adversal.com/ttj?id=1814483&size=468x60&promo_sizes=320x50,300x50,216x36&promo_alignment=center" TYPE="text/javascript"></SCRIPT>

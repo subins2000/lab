@@ -17,7 +17,7 @@ $demoURL     = $this->demoInfo['demo'];
         }
         head();
         ?>
-    <link href='//demos.sim/assets/css/index.css' rel='stylesheet' />
+    <link href='<?php echo $siteURL;?>/assets/css/index.css' rel='stylesheet' />
     </head>
     <body>
         <?php top();?>
