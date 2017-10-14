@@ -10,6 +10,6 @@ $dbname   = getenv('MYSQL_DATABASE');
 $port     = getenv('MYSQL_SERVICE_PORT');
 $dbh      = new PDO('mysql:dbname=' . $dbname . ';host=' . $hostname . ';port=' . $port, $username, $password);
 
-$siteHostname = 'demos.sim';
-$siteURL      = 'https://demos.sim';
+$siteHostname = 'demos.subinsb.com';
+$siteURL      = 'https://demos.subinsb.com';
 $blogURL      = 'https://subinsb.com';
