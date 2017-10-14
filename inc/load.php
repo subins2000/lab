@@ -38,10 +38,7 @@ function head($title = '')
     }
 
     require_once __DIR__ . '/views/partial/head.php';
-
-    if ($_SERVER['HTTP_HOST'] != $siteHostname) {
-        require_once __DIR__ . '/views/partial/track.php';
-    }
+    require_once __DIR__ . '/views/partial/track.php';
 }
 
 function top()
@@ -54,10 +51,8 @@ function footer()
 {
     global $siteURL, $siteHostname;
 
-    if ($_SERVER['HTTP_HOST'] != $siteHostname) {
-        $postURL = $GLOBALS['demoList'][$GLOBALS['curDemoIndex']]['url'];
-        include __DIR__ . '/views/partial/footer.php';
-    }
+    $postURL = $GLOBALS['demoList'][$GLOBALS['curDemoIndex']]['url'];
+    include __DIR__ . '/views/partial/footer.php';
 }
 
 function getDemoInfo($demoID)
