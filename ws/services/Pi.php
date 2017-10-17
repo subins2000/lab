@@ -1,6 +1,4 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
@@ -9,14 +7,14 @@ class PiServer implements MessageComponentInterface {
   protected $clients;
   private $dbh;
   private $users = array();
-  
+
   public function __construct() {
     global $dbh, $docRoot;
     $this->clients = array();
     $this->dbh = $dbh;
     date_default_timezone_set('UTC');
   }
-  
+
   public function onOpen(ConnectionInterface $conn) {
     $this->clients[$conn->resourceId] = $conn;
     $this->checkIfPiEnded($conn);
@@ -70,7 +68,7 @@ class PiServer implements MessageComponentInterface {
   public function onError(ConnectionInterface $conn, \Exception $e) {
     $conn->close();
   }
-  
+
   public function piProcessRunning(){
     exec("ps aux | grep 'extra/pi.py';", $out);
     foreach($out as $o){
@@ -81,7 +79,7 @@ class PiServer implements MessageComponentInterface {
     }
     return false;
   }
-  
+
   public function runPiFindingProcess($digits = "20000"){
     if(!$this->piProcessRunning()){
       $command = "cd ". __DIR__ ."/../;nohup python extra/pi.py $digits > /dev/null 2>&1 &";
@@ -89,13 +87,13 @@ class PiServer implements MessageComponentInterface {
       exec($command);
     }
   }
-  
+
   public function checkIfPiEnded(){
     if(!$this->piProcessRunning()){
       $this->sendToAll("ended");
     }
   }
-  
+
   public function send(ConnectionInterface $client, $type, $data = ""){
     $send = array(
       "type" => $type,
@@ -104,12 +102,12 @@ class PiServer implements MessageComponentInterface {
     $send = json_encode($send, true);
     $client->send($send);
   }
-  
+
   public function sendToAll($type, $data = ""){
     foreach($this->clients as $client){
       $this->send($client, $type, $data);
     }
   }
-  
+
 }
 ?>

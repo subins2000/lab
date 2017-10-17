@@ -30,7 +30,7 @@ window.scrollToBottom = function() {
 
 window.connect = function() {
     // ws-subins.rhcloud.com:8000
-    window.ws = new WebSocket("ws://"+location.hostname+":8000/?service=advanced-chat");
+    window.ws = new WebSocket("wss://"+location.hostname+"/wss/advanced-chat");
 
     ws.onopen = function() {
         clearInterval(checkConnection);

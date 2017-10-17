@@ -1,6 +1,4 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 

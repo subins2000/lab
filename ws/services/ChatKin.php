@@ -1,6 +1,4 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
@@ -8,7 +6,7 @@ class AdvancedChatServer implements MessageComponentInterface {
   protected $clients;
   private $dbh;
   private $users = array();
-  
+
   public function __construct() {
     global $dbh, $docRoot;
     $this->clients = array();
@@ -16,7 +14,7 @@ class AdvancedChatServer implements MessageComponentInterface {
     $this->root = $docRoot;
     date_default_timezone_set('UTC');
   }
-  
+
   public function onOpen(ConnectionInterface $conn) {
     $this->clients[$conn->resourceId] = $conn;
     $this->checkOnliners($conn);
@@ -26,8 +24,8 @@ class AdvancedChatServer implements MessageComponentInterface {
   public function onMessage(ConnectionInterface $conn, $data) {
     $id  = $conn->resourceId;
     $data = json_decode($data, true);
-    
-    
+
+
   }
 
   public function onClose(ConnectionInterface $conn) {
@@ -45,7 +43,7 @@ class AdvancedChatServer implements MessageComponentInterface {
     $conn->close();
     $this->checkOnliners();
   }
-  
+
   /**
    * My custom functions
    */
@@ -58,7 +56,7 @@ class AdvancedChatServer implements MessageComponentInterface {
       if($msgCount > 5){
         $msgs = array_slice($msgs, $msgCount - 5, $msgCount);
       }
-    
+
       foreach($msgs as $msg){
         $return = array(
           "id" => $msg['id'],
@@ -79,7 +77,7 @@ class AdvancedChatServer implements MessageComponentInterface {
       $sql = $this->dbh->prepare("SELECT * FROM `wsAdvancedChat` WHERE `id` < :id ORDER BY `id` DESC LIMIT 10");
       $sql->bindParam(":id", $id, \PDO::PARAM_INT);
       $sql->execute();
-      
+
       $msgs = $sql->fetchAll();
       foreach($msgs as $msg){
         $return = array(
@@ -102,8 +100,8 @@ class AdvancedChatServer implements MessageComponentInterface {
       }
     }
   }
-  
-  public function checkOnliners(ConnectionInterface $conn){    
+
+  public function checkOnliners(ConnectionInterface $conn){
     /**
      * Send online users to everyone
      */
@@ -112,7 +110,7 @@ class AdvancedChatServer implements MessageComponentInterface {
       $this->send($client, "onliners", $data);
     }
   }
-  
+
   public function send(ConnectionInterface $client, $type, $data){
     $send = array(
       "type" => $type,

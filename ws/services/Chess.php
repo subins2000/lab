@@ -1,26 +1,24 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 class ChessServer implements MessageComponentInterface {
-  
+
   protected $clients = array();
   private $dbh;
   private $users = array();
-  
+
   public function __construct() {
     global $dbh, $docRoot;
     $this->dbh = $dbh;
     date_default_timezone_set('UTC');
   }
-  
+
   public function onOpen(ConnectionInterface $conn) {
     $this->clients[$conn->resourceId] = $conn;
     echo "New connection! ({$conn->resourceId})\n";
   }
-  
+
   /**
    * Player Statuses
    * ===============
@@ -39,10 +37,10 @@ class ChessServer implements MessageComponentInterface {
       $username = htmlspecialchars(substr($message, 9));
       if($username == null)
         $username = "user_" . rand(0, 2000);
-      
+
       $sql = $this->dbh->prepare("INSERT INTO `chessPlayers` (`username`, `status`) VALUES (?, ?)");
       $sql->execute(array($username, "0"));
-      
+
       $this->users[$conn->resourceId] = $username;
     }
   }
@@ -56,7 +54,7 @@ class ChessServer implements MessageComponentInterface {
   public function onError(ConnectionInterface $conn, \Exception $e) {
     $conn->close();
   }
-  
+
   public function send(ConnectionInterface $client, $type, $data = ""){
     $send = array(
       "type" => $type,
@@ -65,12 +63,12 @@ class ChessServer implements MessageComponentInterface {
     $send = json_encode($send, true);
     $client->send($send);
   }
-  
+
   public function sendToAll($type, $data = ""){
     foreach($this->clients as $client){
       $this->send($client, $type, $data);
     }
   }
-  
+
 }
 ?>

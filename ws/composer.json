@@ -1,7 +1,7 @@
 {
     "require": {
         "php": "^7.0",
-        "cboden/ratchet": "0.3.0",
+        "cboden/ratchet": ">=0.4",
         "francium/diffsocket": "dev-master"
     },
     "require-dev": {

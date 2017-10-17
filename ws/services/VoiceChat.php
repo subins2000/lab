@@ -1,6 +1,4 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use \Ratchet\ConnectionInterface;
 use \Ratchet\RFC6455\Messaging\MessageInterface;
 use \Ratchet\WebSocket\MessageComponentInterface;

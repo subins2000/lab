@@ -1,19 +1,17 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 class TextChatServer implements MessageComponentInterface {
 	private $dbh;
 	private $users = array();
-	
+
 	public function __construct() {
     global $dbh, $docRoot;
     $this->dbh = $dbh;
     $this->root = $docRoot;
   }
-	
+
 	public function onOpen(ConnectionInterface $conn) {
     $this->clients[$conn->resourceId] = $conn;
 		$this->send($conn, "fetch", $this->fetchMessages());
@@ -24,11 +22,11 @@ class TextChatServer implements MessageComponentInterface {
 	public function onMessage(ConnectionInterface $conn, $data) {
 		$id	= $conn->resourceId;
 		$data = json_decode($data, true);
-    
+
 		if(isset($data['data']) && count($data['data']) != 0){
 			$type = $data['type'];
 			$user = isset($this->users[$id]) ? $this->users[$id]['name'] : false;
-      
+
 			if($type == "register"){
 				$name = htmlspecialchars($data['data']['name']);
         if(array_search($name, array_map(function($element){return $element['name'];}, $this->users)) === false){
@@ -45,7 +43,7 @@ class TextChatServer implements MessageComponentInterface {
 				$msg = htmlspecialchars($data['data']['msg']);
 				$sql = $this->dbh->prepare("INSERT INTO `wsMessages` (`name`, `msg`, `posted`) VALUES(?, ?, NOW())");
 				$sql->execute(array($user, $msg));
-        
+
 				foreach($this->clients as $client) {
 					$this->send($client, "single", array("name" => $user, "msg" => $msg, "posted" => date("Y-m-d H:i:s")));
 				}
@@ -72,7 +70,7 @@ class TextChatServer implements MessageComponentInterface {
     $this->checkOnliners($conn);
     $conn->close();
 	}
-	
+
 	/* My custom functions */
 	public function fetchMessages(){
 		$sql = $this->dbh->prepare("SELECT * FROM `wsMessages`");
@@ -80,13 +78,13 @@ class TextChatServer implements MessageComponentInterface {
 		$msgs = $sql->fetchAll();
 		return $msgs;
 	}
-	
+
 	public function checkOnliners(ConnectionInterface $conn){
 		date_default_timezone_set("UTC");
 		if(isset($this->users[$conn->resourceId])){
 			$this->users[$conn->resourceId]['seen'] = time();
 		}
-		
+
 		$limit_time = strtotime('-10 seconds');
 		foreach($this->users as $id => $user){
 			$usertime = $user['seen'];
@@ -94,7 +92,7 @@ class TextChatServer implements MessageComponentInterface {
 				unset($this->users[$id]);
 			}
 		}
-		
+
 		/**
      * Send online users to everyone
      */
@@ -103,7 +101,7 @@ class TextChatServer implements MessageComponentInterface {
       $this->send($client, "onliners", $data);
 		}
 	}
-	
+
 	public function send(ConnectionInterface $client, $type, $data){
 		$send = array(
 			"type" => $type,

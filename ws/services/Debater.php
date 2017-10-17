@@ -1,14 +1,12 @@
 <?php
-namespace Fr\DiffSocket\Service;
-
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-class Debater implements MessageComponentInterface {
+class DebaterServer implements MessageComponentInterface {
   protected $clients;
   private $dbh;
   private $users = array();
-  
+
   public function __construct() {
     global $dbh, $docRoot;
     $this->clients = array();
@@ -17,7 +15,7 @@ class Debater implements MessageComponentInterface {
     $this->root = $docRoot;
     date_default_timezone_set('UTC');
   }
-  
+
   public function onOpen(ConnectionInterface $conn) {
     $this->clients[$conn->resourceId] = $conn;
     echo "New connection! ({$conn->resourceId})\n";
@@ -36,7 +34,7 @@ class Debater implements MessageComponentInterface {
     $conn->close();
     $this->checkOnliners();
   }
-  
+
   public function send(ConnectionInterface $client, $type, $data){
     $send = array(
       "type" => $type,

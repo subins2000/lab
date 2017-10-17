@@ -4,19 +4,19 @@ require_once __DIR__ . '/config.php';
 $host = '127.0.0.1';
 $port = '8000';
 
-$DS = new Fr\DiffSocket(array(
-    'server'   => array(
-        'host' => $host,
-        'port' => $port,
-    ),
-    'services' => array(
-        'text-chat'     => "$docRoot/services/TextChat.php",
-        'voice-chat'    => "$docRoot/services/VoiceChat.php",
-        'advanced-chat' => "$docRoot/services/AdvancedChat.php",
-        'pi'            => "$docRoot/services/Pi.php",
-        'chess'         => "$docRoot/services/Chess.php",
-        'debater'       => "$docRoot/services/Debater.php",
-    ),
-    'debug'    => true,
-));
-$DS->run();
+require_once "$docRoot/services/TextChat.php";
+require_once "$docRoot/services/VoiceChat.php";
+require_once "$docRoot/services/AdvancedChat.php";
+require_once "$docRoot/services/Pi.php";
+require_once "$docRoot/services/Chess.php";
+require_once "$docRoot/services/Debater.php";
+
+
+$app = new Ratchet\App($host, $port, '0.0.0.0');
+$app->route('/text-chat', new TextChatServer, ['*']);
+$app->route('/voice-chat', new VoiceChatServer, ['*']);
+$app->route('/advanced-chat', new AdvancedChatServer, ['*']);
+$app->route('/pi', new PiServer, ['*']);
+$app->route('/chess', new ChessServer, ['*']);
+$app->route('/debater', new DebaterServer, ['*']);
+$app->run();
