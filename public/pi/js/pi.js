@@ -22,7 +22,7 @@ window.pi = {
     if(this.ws){
       this.ws.close();
     }
-    this.ws = new WebSocket("ws://demos.sim:8000/?service=pi");
+    this.ws = new WebSocket("ws://"+location.hostname+":8000/?service=pi");
     this.ws.onopen = function(){
       pi.out("Connected to server");
       $(".find-pi .disabled.btn").removeClass("disabled");

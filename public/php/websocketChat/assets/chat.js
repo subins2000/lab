@@ -4,7 +4,7 @@ window.scTop = function(){
 	});
 };
 window.connect = function(){
-	window.ws = $.websocket("ws://demos.sim:8000/?service=text-chat", {
+	window.ws = $.websocket("ws://"+location.hostname+":8000/?service=text-chat", {
 		open: function() {
 			$(".chatWindow .chatbox .status").text("Online");
 			ws.send("fetch");

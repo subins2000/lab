@@ -30,7 +30,7 @@ window.scrollToBottom = function() {
 
 window.connect = function() {
     // ws-subins.rhcloud.com:8000
-    window.ws = new WebSocket("ws://demos.sim:8000/?service=advanced-chat");
+    window.ws = new WebSocket("ws://"+location.hostname+":8000/?service=advanced-chat");
 
     ws.onopen = function() {
         clearInterval(checkConnection);
@@ -225,7 +225,7 @@ $(document).ready(function() {
                     }, false);
                     return xhr;
                 },
-                url: "https://demos.sim/php/advanced-chat-websocket/upload.php",
+                url: "/advanced-chat-websocket/upload.php",
                 type: "POST",
                 data: fd,
                 processData: false,
