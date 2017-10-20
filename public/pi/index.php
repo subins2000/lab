@@ -9,14 +9,20 @@ $digits = 8;
     <?php head();?>
     <!--
     <script src="//lab.subinsb.com/projects/jquery/core/jquery-2.1.1.js"></script>
-    -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/pi.js"></script>
+    -->
     <link href="css/pi.css" rel="stylesheet" />
   </head>
   <body>
     <?php top();?>
     <div class="container" id="content">
+      <div class="card red white-text">
+        <div class="card-content">
+            <div class="card-title">Shut Down</div>
+            This demo has been shut down because of the server cost. But you can still <a href="<?php echo $siteURL;?>/download/pi" class="download btn green">download it</a> and run on your system.
+        </div>
+      </div>
       <h2>Finding The Value of Pi</h2>
       <p>
         <a href="<?php echo $siteURL;?>/pi/values.php" class="btn green">See Digits Already Found</a>
