@@ -13,5 +13,5 @@ $port     = $url['port'];
 $dbh      = new PDO('mysql:dbname=' . $dbname . ';host=' . $hostname . ';port=' . $port, $username, $password);
 
 $siteHostname = 'demos.subinsb.com';
-$siteURL      = 'https://demos.subinsb.com';
+$siteURL      = 'https://demos.sim';
 $blogURL      = 'https://subinsb.com';
