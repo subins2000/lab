@@ -1,0 +1,11 @@
+{
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
+    },
+    "scripts": {
+        "post-install-cmd": "cd ws;composer update"
+    }
+}

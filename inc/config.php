@@ -3,13 +3,15 @@
 
 date_default_timezone_set('UTC'); // Set Time Zone
 
-$username = getenv('MYSQL_USER');
-$password = getenv('MYSQL_PASSWORD');
-$hostname = getenv('MYSQL_SERVICE_HOST');
-$dbname   = getenv('MYSQL_DATABASE');
-$port     = getenv('MYSQL_SERVICE_PORT');
+$url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+$username = $url['user'];
+$password = $url['pass'];
+$hostname = $url['host'];
+$dbname   = substr($url['path'], 1);
+$port     = $url['port'];
 $dbh      = new PDO('mysql:dbname=' . $dbname . ';host=' . $hostname . ';port=' . $port, $username, $password);
 
-$siteHostname = 'demos.sim';
-$siteURL      = 'https://demos.sim';
+$siteHostname = 'demos.subinsb.com';
+$siteURL      = 'https://demos.subinsb.com';
 $blogURL      = 'https://subinsb.com';

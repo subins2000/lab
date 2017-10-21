@@ -79,8 +79,8 @@ function loggedIn() {
         "/me/photos",
         "POST",
         {
-          // http://demos.sim/isl-profile-pic/" + r
-          "url": "http://demos.sim/isl-profile-pic/" + r,
+          // https://demos.subinsb.com/isl-profile-pic/" + r
+          "url": "https://demos.subinsb.com/isl-profile-pic/" + r,
           "caption": "Show the world how strong Kerala Blaster Fans are ! Blastify your profile picture NOW ! https://goo.gl/Gis7kZ"
         },
         function (response) {
