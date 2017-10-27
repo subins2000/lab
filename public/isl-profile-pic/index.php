@@ -6,14 +6,14 @@
     <link href="css/croppie.css" rel="stylesheet" async="async" />
     <link href="css/style.css" rel="stylesheet" async="async" />
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="js/croppie.min.js" async="async"></script>
+    <script src="js/cropper.min.js" async="async"></script>
     <script src="js/app.js" async="async"></script>
     <script src="js/fb.js" async="async"></script>
     <meta property="og:title" content="Support Kerala Blasters!" />
     <meta property="og:url" content="http://demos.subinsb.com/isl-profile-pic/" />
     <meta property="og:image" content="http://demos.subinsb.com/isl-profile-pic/image/og-logo.png" />
 
-    <meta name="description" content="Support Kerala Blasters by changing your profile picture. You can directly upload 
+    <meta name="description" content="Support Kerala Blasters by changing your profile picture. You can directly upload
     it to Facebook or download the image." />
     <meta property="og:description" content="Support Kerala Blasters by changing your profile picture. You can directly upload it to Facebook or download the image." />
 
