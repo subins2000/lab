@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../inc/load.php';
             <div class="container" id="content">
                 <div id="preview">
                     <div id="crop-area">
-                        <img src="image/person.png" id="profile-pic" crossorigin="use-credentials" />
+                        <img src="image/person.png" id="profile-pic" crossorigin="anonymous" />
                     </div>
                     <img src="image/dp-fg.png" id="fg" data-design="" />
                 </div>
