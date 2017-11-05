@@ -60,16 +60,9 @@ window.fbAsyncInit = function() {
 // successful.  See statusChangeCallback() for when this call is made.
 function loggedIn() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api(
-        "/me/picture?height=640&redirect=false",
-        function(response) {
-            if (response && !response.error) {
-                /* handle the result */
-                updatePreview(response.data.url);
-                document.getElementById("fb-set-pic").removeAttribute("disabled");
-            }
-        }
-    );
+
+    updatePreview('getFBImage.php?at=' + FB.getAccessToken());
+    document.getElementById("fb-set-pic").removeAttribute("disabled");
 
     document.getElementById("fb-set-pic").onclick = function() {
         this.innerHTML = "Please wait...";
