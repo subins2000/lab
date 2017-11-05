@@ -1,6 +1,7 @@
 {
     "require": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"
