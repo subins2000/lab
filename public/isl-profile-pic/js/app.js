@@ -1,115 +1,115 @@
-function dataURItoBlob(dataURI) {
-    // convert base64/URLEncoded data component to raw binary data held in a string
-    var byteString;
-    if (dataURI.split(',')[0].indexOf('base64') >= 0)
-        byteString = atob(dataURI.split(',')[1]);
-    else
-        byteString = unescape(dataURI.split(',')[1]);
+window.uploadPicture = function(callback, error) {
+    cropper.getCroppedCanvas().toBlob(function (blob) {
+        var formData = new FormData();
 
-    // separate out the mime component
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        formData.append('design', $('#fg').data('design'));
+        formData.append('image', blob);
 
-    // write the bytes of the string to a typed array
-    var ia = new Uint8Array(byteString.length);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
+        var request = new XMLHttpRequest();
+        request.open('POST', 'upload.php', true);
 
-    return new Blob([ia], {type:mimeString});
-}
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                // Success!
+                callback(this.response);
+            } else {
+                error();
+            }
+        };
 
-window.uploadPicture = function(callback){
-  croppie.result({
-    size: "viewport"
-  }).then(function(dataURI){
-    var formData = new FormData();
-    formData.append("design", $("#fg").data("design"));
-    formData.append("image", dataURItoBlob(dataURI));
-    $.ajax({
-      url: "upload.php",
-      data: formData,
-      type: "POST",
-      contentType: false,
-      processData: false,
-      success: callback,
-      error: function(){
-        document.getElementById("download").innerHTML = "Download Profile Picture";
-      },
-      xhr: function() {
-        var myXhr = $.ajaxSettings.xhr();
-        if(myXhr.upload){
-            myXhr.upload.addEventListener('progress', function(e){
-              if(e.lengthComputable){
-                var max = e.total;
-                var current = e.loaded;
+        if (request.upload) {
+            request.upload.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                    var max = e.total;
+                    var current = e.loaded;
 
-                var percentage = Math.round((current * 100)/max);
-                document.getElementById("download").innerHTML = "Uploading... Please Wait... " + percentage + "%";
-              }
+                    var percentage = Math.round((current * 100) / max);
+                    document.getElementById('download').innerHTML = 'Uploading... Please Wait... ' + percentage + '%';
+                }
             }, false);
         }
-        return myXhr;
-      },
+
+        request.onerror = error;
+
+        request.send(formData);
     });
-  });
 }
 
 window.updatePreview = function(url) {
-  document.getElementById("crop-area").innerHTML = "";
-  window.croppie = new Croppie(document.getElementById("crop-area"), {
-    "url": url,
-    boundary: {
-      height: 400,
-      width: 400
-    },
-    viewport: {
-      width: 400,
-      height: 400
-    },
-  });
+    document.getElementById('crop-area').innerHTML = '<img src="' + url + '" id="crop-img" />';
 
-  $("#fg").on('mouseover touchstart', function(){
-    document.getElementById("fg").style.zIndex = -1;
-  });
-  $(".cr-boundary").on('mouseleave touchend', function(){
-    document.getElementById("fg").style.zIndex = 10;
-  });
+    var showFG = function() {
+        document.getElementById('fg').style.zIndex = 10;
+    };
 
-  document.getElementById("download").onclick = function(){
-    this.innerHTML = "Uploading... Please wait...";
-    uploadPicture(function(r){
-      document.getElementById("download").innerHTML = "Uploaded";
-      window.location = "download.php?i=" + r;
+    window.cropper = new Cropper(document.getElementById('crop-img'), {
+        'url': url,
+        viewMode: 3,
+        dragMode: 'move',
+        cropBoxResizable: false,
+        cropBoxMovable: false,
+        minCropBoxWidth: $('#preview').width(),
+        minCropBoxHeight: $('#preview').height(),
+        background: false,
+        guides: false,
     });
-  };
-  document.getElementById("download").removeAttribute("disabled");
+
+    $(document).on('mouseover touchstart', function(e) {
+        if ($('#fg').is(e.target)) {
+            return;
+        }
+
+        if (!$('.cropper-crop-box').is(e.target) && $('.cropper-crop-box').has(e.target).length === 0) {
+            document.getElementById('fg').style.zIndex = 10;
+        }
+    });
+
+    $('#fg').on('mouseover click touchstart', function(e) {
+        document.getElementById('fg').style.zIndex = -1;
+    });
+
+    $('#afterActions').show();
+
+    document.getElementById('download').onclick = function() {
+        this.innerHTML = 'Uploading... Please wait...';
+
+        uploadPicture(function(r) {
+            if (r !== '') {
+                document.getElementById('download').innerHTML = 'Uploaded';
+                window.location = 'download.php?i=' + r;
+            }
+        }, function(){
+            document.getElementById('download').innerHTML = 'Download Profile Picture';
+        });
+    };
+    document.getElementById('download').removeAttribute('disabled');
 };
 
-window.onFileChange = function(input){
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
+window.onFileChange = function(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-    reader.onload = function (e) {
-      image = new Image();
-      image.onload = function() {
-        var width = this.width;
-        var height = this.height;
-        if(width >= 400 && height >= 400)
-          updatePreview(e.target.result);
-        else
-          alert("Image should be atleast have 400px width and 400px height");
-      };
-      image.src = e.target.result; 
+        reader.onload = function(e) {
+            image = new Image();
+            image.onload = function() {
+                var width = this.width;
+                var height = this.height;
+                if (width >= 400 && height >= 400)
+                    updatePreview(e.target.result);
+                else
+                    alert('Image should be atleast have 400px width and 400px height');
+            };
+            image.src = e.target.result;
+        }
+
+        reader.readAsDataURL(input.files[0]);
     }
-
-    reader.readAsDataURL(input.files[0]);
-  }
 }
 
-$(document).ready(function(){
-  $(".design").on("click", function(){
-    $("#fg").attr("src", $(this).attr("src")).data("design", $(this).data("design"));
-    $(".design.active").removeClass("active");
-    $(this).addClass("active");
-  });
+$(document).ready(function() {
+    $('.design').on('click', function() {
+        $('#fg').attr('src', $(this).attr('src')).data('design', $(this).data('design'));
+        $('.design.active').removeClass('active');
+        $(this).addClass('active');
+    });
 });

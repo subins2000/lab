@@ -1,14 +1,9 @@
 <?php
-if($_SERVER['HTTP_HOST'] != $siteHostname){
-?>
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Ubuntu' async="async" type='text/css' media='all' />
-<?php
-}
 /**
 <script type="text/javascript">
-var sc_project=8896788; 
-var sc_invisible=1; 
-var sc_security="1be05837"; 
+var sc_project=8896788;
+var sc_invisible=1;
+var sc_security="1be05837";
     var sc = document.createElement('script'); sc.type = 'text/javascript'; sc.async = true;
     sc.src = ('https:' == document.location.protocol ? 'https://secure.' : '//') + 'statcounter.com/counter/counter.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sc, s);
