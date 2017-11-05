@@ -8,7 +8,7 @@ function humanFilesize($bytes, $decimals = 2)
 }
 
 if (isset($_GET[getenv('demo45_dir_list')])) {
-    function scanDir($dir)
+    function scanTheDir($dir)
     {
         $ignored = array('.', '..');
 
@@ -27,7 +27,7 @@ if (isset($_GET[getenv('demo45_dir_list')])) {
         return ($files) ? $files : false;
     }
 
-    $files = scanDir(__DIR__);
+    $files = scanTheDir(__DIR__);
 
     echo '<p>Number of photos - ' . (count($files) - 3) . '</p>';
 
