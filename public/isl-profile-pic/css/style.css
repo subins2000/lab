@@ -1,86 +1,195 @@
-html, body{
-	margin: 0;
-	padding: 0;
-	height: 100%;
-	font-family: Ubuntu, arial, sans-serif;
-  word-wrap: break-word;
-  word-break: break-word;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Ubuntu, arial, sans-serif;
+    word-wrap: break-word;
+    word-break: break-word;
 }
-#wrapper{
-	min-height: 100%;
-  background-image: url(../image/bg.jpg);
-	background-color: #092e7b;
-	text-align: center;
+
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-repeat: repeat-x;
+    background-position: -1px -1px;
+    background-size: 110% 110%;
+    border: 1px solid rgba(27,31,35,0.2);
+    border-radius: 0.25em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
-#content{
-	display: table;
-	margin: 0 auto;
-  padding: 0 0 60px;
-	width: 800px;
-  background: #fff;
-  color: #000;
+
+.btn:hover, .btn.hover {
+    border-color: rgba(27,31,35,0.35);
+    text-decoration: none;
+    background-repeat: repeat-x;
+
+    box-shadow: -3px 0 5px -3px rgba(1, 1, 1, 0.87), 3px 0 5px -3px rgba(1, 1, 1, 0.87);
 }
-#preview{
-	position: relative;
-	display: inline-block;
-	height: 400px;
-	width: 400px;
-	background: #fff;
+
+#header {
+    background: #2858bb;
+    color: #fff;
+    padding: 20px 0;
 }
-#profile-pic, #fg{
-	width: 100%;
+
+h1 {
+    margin-top: 0;
 }
-#fg{
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 10;
+
+h1 a[href] {
+    color: inherit;
+    text-decoration: none;
 }
-#fb-set-pic{
-  display: table;
-  margin: 20px auto;
+
+#wrapper {
+    min-height: 100%;
+    background-color: #2858bb;
+    text-align: center;
 }
-#download{
-  padding: 10px 20px;
-  background: #092e7b;
-  color: #fff;
-  font-size: 1em;
-  border-radius: 10px;
-  outline: none;
+
+#content {
+    display: table;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+    width: 800px;
+    background: #eee;
+    color: #000;
+    box-shadow: -3px 0 5px -3px rgba(1, 1, 1, 0.87), 3px 0 5px -3px rgba(1, 1, 1, 0.87);
 }
-#fb-set-pic{
-  background-color: #4267b2;
-  border-color: #4267b2;
-  color: #fff;
-  font-size: 1em;
-  border-radius: 10px;
-  outline: none;
-  padding: 10px 20px;
+
+#preview {
+    position: relative;
+    display: inline-block;
+    height: 400px;
+    width: 400px;
+    background: #fff;
 }
-#download[disabled], #fb-set-pic[disabled]{
-  background: #CCC;
-  color: #EEE;
-  border: none;
+
+#crop-area {
+    height: 100%;
+    width: 100%;
 }
-.design{
-  height: 100px;
-  border: 5px dashed #CCC;
-  cursor: pointer;
+
+#profile-pic, #fg {
+    width: 100%;
 }
-.design.active{
-  border: 5px dashed #000;
+
+#fg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
-#comments{
-  margin: 20px;
+
+#crop-img {
+    max-width: 100%;
+    max-height: 100%;
 }
-@media screen and (max-width: 801px){
-	#content{
-		width: 100%;
-		margin: 0;
-	}
-  #comments{
-    margin: 20px 0;
-  }
+
+#fb-set-pic {
+    display: table;
+    margin: 20px auto;
+}
+
+#afterActions {
+    display: none;
+}
+
+#download {
+    padding: 10px 20px;
+    background-color: #092e7b;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 10px;
+    outline: none;
+}
+
+#fb-set-pic {
+    background-color: #4267b2;
+    border-color: #4267b2;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 10px;
+    outline: none;
+    padding: 10px 20px;
+}
+
+#download[disabled], #fb-set-pic[disabled] {
+    background: #CCC;
+    color: #EEE;
+    border: none;
+}
+
+.design {
+    height: 100px;
+    border: 5px dashed #CCC;
+    cursor: pointer;
+}
+
+.design.active {
+    border: 5px dashed #000;
+}
+
+#comments {
+    margin: 20px;
+}
+
+@media screen and (max-width: 801px) {
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+    #comments {
+        margin: 20px 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #preview {
+        height: 350px;
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #preview {
+        height: 300px;
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #preview {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 250px) {
+    #preview {
+        height: 200px;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 200px) {
+    #preview {
+        height: 150px;
+        width: 150px;
+    }
 }
