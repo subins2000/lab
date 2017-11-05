@@ -73,26 +73,31 @@ function loggedIn() {
 
     document.getElementById("fb-set-pic").onclick = function() {
         this.innerHTML = "Please wait...";
-        uploadPicture(function(r) {
-            /* make the API call */
-            FB.api(
-                "/me/photos",
-                "POST", {
-                    // https://demos.subinsb.com/isl-profile-pic/" + r
-                    "url": "https://demos.subinsb.com/isl-profile-pic/" + r,
-                    "caption": "Show the world how strong Kerala Blaster Fans are ! Blastify your profile picture NOW ! https://goo.gl/bAEiqv"
-                },
-                function(response) {
-                    if (response && !response.error) {
-                        FB.api("/" + response.id, "GET", {
-                            "fields": "link"
-                        }, function(picture) {
-                            window.location = picture["link"] + "&makeprofile=1";
-                        });
+        uploadPicture(
+            function(r) {
+                /* make the API call */
+                FB.api(
+                    "/me/photos",
+                    "POST", {
+                        // https://demos.subinsb.com/isl-profile-pic/" + r
+                        "url": "https://demos.subinsb.com/isl-profile-pic/" + r,
+                        "caption": "Show the world how strong Kerala Blaster Fans are ! Blastify your profile picture NOW ! https://goo.gl/bAEiqv"
+                    },
+                    function(response) {
+                        if (response && !response.error) {
+                            FB.api("/" + response.id, "GET", {
+                                "fields": "link"
+                            }, function(picture) {
+                                window.location = picture["link"] + "&makeprofile=1";
+                            });
+                        }
                     }
-                }
-            );
-        });
+                );
+            },
+            function() {
+                document.getElementById('download').innerHTML = 'Download Profile Picture';
+            }
+        );
     };
 }
 

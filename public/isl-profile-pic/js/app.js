@@ -79,14 +79,16 @@ window.updatePreview = function(url) {
     document.getElementById('download').onclick = function() {
         this.innerHTML = 'Uploading... Please wait...';
 
-        uploadPicture(function(r) {
-            if (r !== '') {
-                document.getElementById('download').innerHTML = 'Uploaded';
-                window.location = 'download.php?i=' + r;
+        uploadPicture(
+            function(r) {
+                if (r !== '') {
+                    document.getElementById('download').innerHTML = 'Uploaded';
+                    window.location = 'download.php?i=' + r;
+                }
+            }, function(){
+                document.getElementById('download').innerHTML = 'Download Profile Picture';
             }
-        }, function(){
-            document.getElementById('download').innerHTML = 'Download Profile Picture';
-        });
+        );
     };
     document.getElementById('download').removeAttribute('disabled');
 };
