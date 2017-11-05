@@ -13,8 +13,8 @@ require_once __DIR__ . '/../../inc/load.php';
         <script src="js/app.js" async="async"></script>
         <script src="js/fb.js" async="async"></script>
         <meta property="og:title" content="Support Kerala Blasters!" />
-        <meta property="og:url" content="http://demos.subinsb.com/isl-profile-pic/" />
-        <meta property="og:image" content="http://demos.subinsb.com/isl-profile-pic/image/og-logo.png" />
+        <meta property="og:url" content="<?php echo $siteURL;?>/isl-profile-pic/" />
+        <meta property="og:image" content="<?php echo $siteURL;?>/isl-profile-pic/image/og-logo.png" />
 
         <meta name="description" content="Support Kerala Blasters by changing your profile picture. You can directly upload
         it to Facebook or download the image." />
@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../inc/load.php';
             <div class="container" id="content">
                 <div id="preview">
                     <div id="crop-area">
-                        <img src="image/person.png" id="profile-pic" />
+                        <img src="image/person.png" id="profile-pic" crossorigin="use-credentials" />
                     </div>
                     <img src="image/dp-fg.png" id="fg" data-design="" />
                 </div>
