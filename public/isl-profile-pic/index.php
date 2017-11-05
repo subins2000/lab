@@ -14,7 +14,7 @@ require_once __DIR__ . '/../../inc/load.php';
         <script src="js/fb.js" async="async"></script>
         <meta property="og:title" content="Support Kerala Blasters!" />
         <meta property="og:url" content="<?php echo $siteURL;?>/isl-profile-pic/" />
-        <meta property="og:image" content="<?php echo $siteURL;?>/isl-profile-pic/image/og-logo.png" />
+        <meta property="og:image" content="<?php echo $siteURL;?>/isl-profile-pic/image/og-logo.png?1v8" />
 
         <meta name="description" content="Support Kerala Blasters by changing your profile picture. You can directly upload
         it to Facebook or download the image." />
