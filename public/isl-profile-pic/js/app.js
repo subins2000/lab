@@ -36,7 +36,7 @@ window.uploadPicture = function(callback, error) {
 }
 
 window.updatePreview = function(url) {
-    document.getElementById('crop-area').innerHTML = '<img src="' + url + '" id="crop-img" />';
+    $('#profile-pic').attr('src', url).attr('id', 'crop-img');
 
     var showFG = function() {
         document.getElementById('fg').style.zIndex = 10;
