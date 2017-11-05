@@ -41,6 +41,7 @@ window.updatePreview = function(url) {
     } else {
         $('#crop-img').attr('src', url);
         cropper.replace(url);
+        return;
     }
 
     var showFG = function() {
