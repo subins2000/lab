@@ -36,7 +36,12 @@ window.uploadPicture = function(callback, error) {
 }
 
 window.updatePreview = function(url) {
-    $('#profile-pic').attr('src', url).attr('id', 'crop-img');
+    if (typeof cropper === 'undefined') {
+        $('#profile-pic').attr('src', url).attr('id', 'crop-img');
+    } else {
+        $('#crop-img').attr('src', url);
+        cropper.replace(url);
+    }
 
     var showFG = function() {
         document.getElementById('fg').style.zIndex = 10;
