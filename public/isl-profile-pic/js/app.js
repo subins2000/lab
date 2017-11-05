@@ -57,6 +57,7 @@ window.updatePreview = function(url) {
         minCropBoxHeight: $('#preview').height(),
         background: false,
         guides: false,
+        checkCrossOrigin: false
     });
 
     $(document).on('mouseover touchstart', function(e) {
