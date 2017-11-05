@@ -39,8 +39,8 @@ window.updatePreview = function(url) {
     if (typeof cropper === 'undefined') {
         $('#profile-pic').attr('src', url).attr('id', 'crop-img');
     } else {
-        $('#crop-img').attr('src', url);
         cropper.replace(url);
+        return;
     }
 
     var showFG = function() {
