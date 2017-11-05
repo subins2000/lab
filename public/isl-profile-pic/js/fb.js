@@ -80,7 +80,7 @@ function loggedIn() {
                 "POST", {
                     // https://demos.subinsb.com/isl-profile-pic/" + r
                     "url": "https://demos.subinsb.com/isl-profile-pic/" + r,
-                    "caption": "Show the world how strong Kerala Blaster Fans are ! Blastify your profile picture NOW ! https://goo.gl/Gis7kZ"
+                    "caption": "Show the world how strong Kerala Blaster Fans are ! Blastify your profile picture NOW ! https://goo.gl/bAEiqv"
                 },
                 function(response) {
                     if (response && !response.error) {
