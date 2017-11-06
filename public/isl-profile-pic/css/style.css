@@ -45,13 +45,17 @@ html, body {
     padding: 20px 0;
 }
 
-h1 {
+h1, #uploadSection h2:nth-child(1) {
     margin-top: 0;
 }
 
 h1 a[href] {
     color: inherit;
     text-decoration: none;
+}
+
+#uploadSection {
+    margin-bottom: 20px;
 }
 
 #wrapper {
