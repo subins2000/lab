@@ -29,6 +29,13 @@ require_once __DIR__ . '/../../inc/load.php';
                 <p>Support Kerala Blasters by changing your profile picture</p>
             </div>
             <div class="container" id="content">
+                <div id="uploadSection">
+                    <h2>Upload Photo</h2>
+                    <input type="file" name="file" onchange="onFileChange(this)">
+                    <h2>OR</h2>
+                    <div class="fb-login-button" data-scope="public_profile,publish_actions" onlogin="checkLoginState();" data-max-rows="5" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+                    <div id="status"></div>
+                </div>
                 <div id="preview">
                     <div id="crop-area">
                         <img src="image/person.png" id="profile-pic" crossorigin="anonymous" />
@@ -39,11 +46,6 @@ require_once __DIR__ . '/../../inc/load.php';
                     <button id="download" class="btn" disabled>Download Profile Picture</button>
                     <button id="fb-set-pic" class="btn" disabled>Set As <b>Facebook</b> Profile Picture</button>
                 </p>
-                <h2>Upload</h2>
-                <input type="file" name="file" onchange="onFileChange(this)">
-                <h2>OR</h2>
-                <div class="fb-login-button" data-scope="public_profile,publish_actions" onlogin="checkLoginState();" data-max-rows="5" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
-                <div id="status"></div>
                 <h2>Design</h2>
                 <div id="designs">
                     <img class="design active" src="image/dp-fg.png" data-design="" />
