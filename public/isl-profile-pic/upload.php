@@ -14,7 +14,6 @@ if (isset($_FILES['image'])) {
 
     $sourceImg = @imagecreatefromstring(@file_get_contents($_FILES['image']['tmp_name']));
     if ($sourceImg === false) {
-        echo 'image/og-logo.png';
         exit;
     }
 

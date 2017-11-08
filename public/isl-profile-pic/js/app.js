@@ -81,7 +81,10 @@ window.updatePreview = function(url) {
 
         uploadPicture(
             function(r) {
-                if (r !== '') {
+                if (r === '') {
+                    document.getElementById('download').innerHTML = 'Download Profile Picture';
+                    alert('Some error happened. Reload page or use a different browser.');
+                } else {
                     document.getElementById('download').innerHTML = 'Uploaded';
                     window.location = 'download.php?i=' + r;
                 }
