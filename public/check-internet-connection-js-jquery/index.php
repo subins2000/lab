@@ -17,11 +17,11 @@ init(11);
 <script>
 function checkJSNetConnection(){
  var xhr = new XMLHttpRequest();
- var file = "<?php echo $siteURL;?>/assets/dot.png";
- var r = Math.round(Math.random() * 10000); 
- xhr.open('HEAD', file + "?subins=" + r, false); 
+ var file = "/assets/dot.png";
+ var r = Math.round(Math.random() * 10000);
+ xhr.open('HEAD', file + "?subins=" + r, false);
  try {
-  xhr.send(); 
+  xhr.send();
   if (xhr.status >= 200 && xhr.status < 304) {
    return true;
   } else {
