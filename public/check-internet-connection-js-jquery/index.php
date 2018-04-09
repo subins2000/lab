@@ -42,7 +42,7 @@ function checkNetConnection(){
  jQuery.ajaxSetup({async:false});
  re="";
  r=Math.round(Math.random() * 10000);
- $.get("<?php echo $siteURL;?>/assets/dot.png",{subins:r},function(d){
+ $.get("/assets/dot.png",{subins:r},function(d){
   re=true;
  }).error(function(){
   re=false;
