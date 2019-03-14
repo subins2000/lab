@@ -23,15 +23,15 @@ $digits = 8;
         $digits = $_GET['digits'];
         if($digits === "5million"){
           $pi = file_get_contents(__DIR__ . "/values/5million.txt");
-          echo "<pre style='white-space:pre;word-wrap: break-word;max-width:600px;border: 2px dashed #000;padding: 10px;'><code>". $pi ."</code></pre>";
+          echo "<pre style='white-space:pre-line;word-wrap: break-word;border: 2px dashed #000;padding: 10px;'><code>". $pi ."</code></pre>";
         }
         if($digits === "1million"){
           $pi = file_get_contents(__DIR__ . "/values/1million.txt");
-          echo "<pre style='white-space:pre;word-wrap: break-word;max-width:600px;border: 2px dashed #000;padding: 10px;'><code>". $pi ."</code></pre>";
+          echo "<pre style='white-space:pre-line;word-wrap: break-word;border: 2px dashed #000;padding: 10px;'><code>". $pi ."</code></pre>";
         }
         if($digits === "thousand"){
           $pi = file_get_contents(__DIR__ . "/values/thousand.txt");
-          echo "<pre style='white-space:pre;word-wrap: break-word;max-width:600px;border: 2px dashed #000;padding: 10px;'><code>". $pi ."</code></pre>";
+          echo "<pre style='white-space:pre-line;word-wrap: break-word;border: 2px dashed #000;padding: 10px;'><code>". $pi ."</code></pre>";
         }
       }
       ?>
