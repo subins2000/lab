@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../../../inc/config.php';
+
 // ini_set("display_errors","on");
 if(!isset($dbh)){
  session_start();
