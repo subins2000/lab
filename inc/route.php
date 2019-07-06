@@ -51,6 +51,11 @@ $klein->respond('GET', '/download-confirm/[s:demoIndex]', function ($request, $r
     }
 });
 
+$klein->respond('GET', '/sanders/s.js', function($request, $response) use ($dbh) {
+    $response->header('Content-Type', 'application/javascript');
+    require_once __DIR__ . '/../public/sanders/s.php';
+});
+
 $klein->onHttpError(function ($code, $router) {
     $page = $router->request()->uri();
 
