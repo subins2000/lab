@@ -18,4 +18,6 @@ if (isset($_GET['id'])) {
     $count = PHPCount::getHits($id);
 }
 ?>
-document.getElementById('sanders-page-counter').innerHtml = '<?php echo $count;?>';
+var a = document.getElementById('sanders-page-counter');
+a.innerHTML = '<b><?php echo $count;?></b>';
+a.title = 'since 2019 August';
