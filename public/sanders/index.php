@@ -7,10 +7,11 @@ PHPCount::setDBAdapter($dbh);
 <table>
     <tbody>
         <?php
+        $sth = $dbh->query('TRUNCATE nodupes;');
         $sth = $dbh->query('SELECT DISTINCT pageid FROM `hits`');
         while($r = $sth->fetch()) {
             echo '<tr>';
-                echo '<td>' . $r['pageid'] . '</td>';
+                echo '<td>' . htmlspecialchars($r['pageid']) . '</td>';
                 echo '<td>' . PHPCount::GetHits($r['pageid']) . '</td>';
             echo '</tr>';
         }
