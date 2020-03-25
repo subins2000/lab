@@ -463,4 +463,15 @@ $demoList = array(
             'url'  => '//github.com/subins2000/CryptoDonate/archive/master.zip/',
         ),
     ),
+
+    47 => array(
+        'id'       => 'indicen',
+        'title'    => 'Indic-En : Transliterate Malayalam, Hindi & Kannada to English script',
+        'url'      => $blogURL . '/indicen/',
+        'demo'     => $siteURL . '/indicen/',
+        'download' => array(
+            'type' => 'github',
+            'url'  => '//gitlab.com/subins2000/indicjs/-/archive/master/indicjs-master.zip',
+        ),
+    ),
 );

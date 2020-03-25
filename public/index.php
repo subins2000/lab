@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_URI'] !== '/' && $_SERVER['REQUEST_URI'] !== '/index.php')
     <div class="container" id="content">
       <center>
         <h1 style="font-size: 4rem;">Subin's Lab</h1>
-        <p style="margin: 10px 0px 30px;">My experiements with code</p>
+        <p style="margin: 10px 0px 30px;">My experiments with code</p>
       </center>
       <div class="demos_list">
         <?php
