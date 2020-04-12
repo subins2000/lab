@@ -474,4 +474,15 @@ $demoList = array(
             'url'  => '//gitlab.com/subins2000/indicjs/-/archive/master/indicjs-master.zip',
         ),
     ),
+
+    48 => array(
+        'id'       => 'indicen',
+        'title'    => 'മലയക്കം (Malayakkam) : Encode (Convert) Hindu-Arabic numerals to Malayalam numerals.',
+        'url'      => $blogURL . '/malayakkam/',
+        'demo'     => $siteURL . '/malayakkam/',
+        'download' => array(
+            'type' => 'github',
+            'url'  => '//github.com/subins2000/malayakkam/archive/master.zip',
+        ),
+    ),
 );
