@@ -68,4 +68,10 @@ div.site-face-color {
     .site-header {
         padding: 5px 0px;
     }
+    #site-header .nav-content {
+        line-height: 38px;
+    }
+    #site-header #demo-title {
+        font-size: 1.3rem;
+    }
 }
