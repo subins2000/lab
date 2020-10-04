@@ -8,7 +8,7 @@ PHPCount::setDBAdapter($dbh);
     <tbody>
         <?php
         $sth = $dbh->query('TRUNCATE nodupes;');
-        $sth = $dbh->query('SELECT DISTINCT pageid FROM `hits`');
+        $sth = $dbh->query('SELECT DISTINCT pageid FROM `hits` ORDER BY `hits` LIMIT 20');
         while($r = $sth->fetch()) {
             echo '<tr>';
                 echo '<td>' . htmlspecialchars($r['pageid']) . '</td>';
