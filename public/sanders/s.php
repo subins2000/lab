@@ -19,5 +19,4 @@ if (isset($_GET['id'])) {
 }
 ?>
 var a = document.getElementById('sanders-page-counter');
-a.innerHTML = '<b><?php echo $count;?></b>';
-a.title = 'since 2020';
+if (a) {a.innerHTML = '<b><?php echo $count;?></b>';a.title = 'since 2020';}
